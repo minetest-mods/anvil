@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-27 22:39-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: init.lua:14
+msgid "Steel hammer for repairing tools on the anvil"
+msgstr ""
+
+#: init.lua:39
+msgid "Workpiece:"
+msgstr ""
+
+#: init.lua:41
+msgid "Optional"
+msgstr ""
+
+#: init.lua:42
+msgid "storage for"
+msgstr ""
+
+#: init.lua:43
+msgid "your hammer"
+msgstr ""
+
+#: init.lua:45 init.lua:80
+msgid "Anvil"
+msgstr ""
+
+#: init.lua:46
+msgid "Punch anvil with hammer to"
+msgstr ""
+
+#: init.lua:47
+msgid "repair tool in workpiece-slot."
+msgstr ""
+
+#: init.lua:53
+msgid "anvil"
+msgstr ""
+
+#: init.lua:92
+#, lua-format
+msgid "Anvil (owned by %s)"
+msgstr ""
+
+#: init.lua:95 init.lua:177
+#, lua-format
+msgid "Owner: %s"
+msgstr ""
+
+#: init.lua:138
+msgid "The workpiece slot is for damaged tools only."
+msgstr ""

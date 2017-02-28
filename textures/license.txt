@@ -1,0 +1,2 @@
+License of the hammer picture: CC-by-SA; done by GloopMaster; source:
+https://github.com/GloopMaster/glooptest/blob/master/glooptest/textures/glooptest_tool_steelhammer.png

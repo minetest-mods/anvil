@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-27 22:39-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Xanthin"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: init.lua:14
+msgid "Steel hammer for repairing tools on the anvil"
+msgstr "Stahlhammer um Werkzeuge auf dem Amboss zu reparieren"
+
+#: init.lua:39
+msgid "Workpiece:"
+msgstr "Werkstueck:"
+
+#: init.lua:41
+msgid "Optional"
+msgstr "Moegliche"
+
+#: init.lua:42
+msgid "storage for"
+msgstr "Aufbewahrung fuer"
+
+#: init.lua:43
+msgid "your hammer"
+msgstr "deinen Hammer"
+
+#: init.lua:45 init.lua:80
+msgid "Anvil"
+msgstr "Amboss"
+
+#: init.lua:46
+msgid "Punch anvil with hammer to"
+msgstr "Schlage mit dem Hammer auf den Amboss um"
+
+#: init.lua:47
+msgid "repair tool in workpiece-slot."
+msgstr "das Werkzeug im Werkstueckfeld zu reparieren."
+
+#: init.lua:53
+msgid "anvil"
+msgstr "Amboss"
+
+#: init.lua:92
+#, lua-format
+msgid "Anvil (owned by %s)"
+msgstr "Amboss (gehoert %s)"
+
+#: init.lua:95 init.lua:177
+#, lua-format
+msgid "Owner: %s"
+msgstr "Besitzer: %s"
+
+#: init.lua:138
+msgid "The workpiece slot is for damaged tools only."
+msgstr "Das Werkstueckfeld gilt nur fuer beschaedigtes Werkzeug."
