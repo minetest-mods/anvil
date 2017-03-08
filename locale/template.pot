@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-27 22:39-0700\n"
+"POT-Creation-Date: 2017-03-07 22:17-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,52 +17,43 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: init.lua:14
-msgid "Steel hammer for repairing tools on the anvil"
+#: init.lua:19
+msgid "Steel blacksmithing hammer"
 msgstr ""
 
-#: init.lua:39
-msgid "Workpiece:"
+#: init.lua:20
+msgid "A tool for repairing other tools at a blacksmith's anvil."
 msgstr ""
 
-#: init.lua:41
-msgid "Optional"
+#: init.lua:21
+msgid ""
+"Use this hammer to strike blows upon an anvil bearing a damaged tool and you "
+"can repair it. It can also be used for smashing stone, but it is not well "
+"suited to this task."
 msgstr ""
 
-#: init.lua:42
-msgid "storage for"
-msgstr ""
-
-#: init.lua:43
-msgid "your hammer"
-msgstr ""
-
-#: init.lua:45 init.lua:80
+#: init.lua:98
 msgid "Anvil"
 msgstr ""
 
-#: init.lua:46
-msgid "Punch anvil with hammer to"
+#: init.lua:99
+msgid ""
+"A tool for repairing other tools in conjunction with a blacksmith's hammer."
 msgstr ""
 
-#: init.lua:47
-msgid "repair tool in workpiece-slot."
+#: init.lua:100
+msgid ""
+"Right-click on this anvil with a damaged tool to place the damaged tool upon "
+"it. You can then repair the damaged tool by striking it with a blacksmith's "
+"hammer. Repeated blows may be necessary to fully repair a badly worn tool. "
+"To retrieve the tool either punch or right-click the anvil with an empty "
+"hand."
 msgstr ""
 
-#: init.lua:53
-msgid "anvil"
+#: init.lua:155
+msgid "This anvil is for damaged tools only."
 msgstr ""
 
-#: init.lua:92
-#, lua-format
-msgid "Anvil (owned by %s)"
-msgstr ""
-
-#: init.lua:95 init.lua:177
-#, lua-format
-msgid "Owner: %s"
-msgstr ""
-
-#: init.lua:138
-msgid "The workpiece slot is for damaged tools only."
+#: init.lua:267
+msgid "Your @1 has been repaired successfully."
 msgstr ""
