@@ -11,7 +11,6 @@ minetest.register_alias("castle:anvil", "anvil:anvil")
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
-
 local item_displacement = 7/16
 
 -- the hammer for the anvil
@@ -93,6 +92,14 @@ local update_item = function(pos, node)
 	end
 end
 
+local metal_sounds
+-- Apparently node_sound_metal_defaults is a newer thing, I ran into games using an older version of the default mod without it.
+if default.node_sound_metal_defaults ~= nil then
+	metal_sounds = default.node_sound_metal_defaults()
+else
+	metal_sounds = default.node_sound_stone_defaults()
+end
+
 minetest.register_node("anvil:anvil", {
 	drawtype = "nodebox",
 	description = S("Anvil"),
@@ -102,6 +109,7 @@ minetest.register_node("anvil:anvil", {
 	paramtype  = "light",
 	paramtype2 = "facedir",
 	groups = {cracky=2},
+	sounds = metal_sounds,
 	-- the nodebox model comes from realtest
 	node_box = {
 		type = "fixed",
@@ -145,14 +153,14 @@ minetest.register_node("anvil:anvil", {
 	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
 		local meta = minetest.get_meta(pos)
 		if listname~="input" then
-			return 0;
+			return 0
 		end
 		if (listname=='input'
 			and(stack:get_wear() == 0
 			or stack:get_name() == "technic:water_can" 
 			or stack:get_name() == "technic:lava_can" )) then
 			
-			minetest.chat_send_player( player:get_player_name(), S('This anvil is for damaged tools only.'));
+			minetest.chat_send_player( player:get_player_name(), S('This anvil is for damaged tools only.'))
 			return 0
 		end
 		
@@ -194,12 +202,12 @@ minetest.register_node("anvil:anvil", {
 	
 	on_punch = function(pos, node, puncher)
 		if( not( pos ) or not( node ) or not( puncher )) then
-			return;
+			return
 		end
 
-		local wielded = puncher:get_wielded_item();
-		local meta = minetest.get_meta(pos);
-		local inv  = meta:get_inventory();
+		local wielded = puncher:get_wielded_item()
+		local meta = minetest.get_meta(pos)
+		local inv  = meta:get_inventory()
 		
 		if wielded:get_count() == 0 then
 			if not inv:is_empty("input") then
@@ -212,26 +220,26 @@ minetest.register_node("anvil:anvil", {
 		
 		-- only punching with the hammer is supposed to work
 		if wielded:get_name() ~= 'anvil:hammer' then
-			return;
+			return
 		end
 		
-		local input = inv:get_stack('input',1);
+		local input = inv:get_stack('input',1)
 	
 		-- only tools can be repaired
 		if( not( input ) 
 		or input:is_empty()
 				or input:get_name() == "technic:water_can" 
 				or input:get_name() == "technic:lava_can" ) then
-			return;
+			return
 		end
 	
 		-- 65535 is max damage
-		local damage_state = 40-math.floor(input:get_wear()/1638);
+		local damage_state = 40-math.floor(input:get_wear()/1638)
 	
-		local tool_name = input:get_name();
+		local tool_name = input:get_name()
 
-		local hud2 = nil;
-		local hud3 = nil;
+		local hud2 = nil
+		local hud3 = nil
 		if( input:get_wear()>0 ) then
 			hud2 = puncher:hud_add({
 				hud_elem_type = "statbar",
@@ -252,41 +260,60 @@ minetest.register_node("anvil:anvil", {
 				alignment = {x = 0, y = 0},
 				offset = {x = -320, y = 0},
 				size = {x=32, y=32},
-			});
+			})
 		end
 		minetest.after(2, function()
 			if( puncher ) then
-				puncher:hud_remove(hud2);
-				puncher:hud_remove(hud3);
+				puncher:hud_remove(hud2)
+				puncher:hud_remove(hud3)
 			end
 		end)
 	
 		-- tell the player when the job is done
 		if(   input:get_wear() == 0 ) then
-			minetest.chat_send_player( puncher:get_player_name(),
-				S('Your @1 has been repaired successfully.', tool_name));
-			return;
+			minetest.chat_send_player( puncher:get_player_name(), S('Your @1 has been repaired successfully.', tool_name))
+			return
+		else
+			pos.y = pos.y + item_displacement
+			minetest.sound_play({name="anvil_clang"}, {pos=pos})
+			minetest.add_particlespawner({
+				amount = 10,
+				time = 0.1,
+				minpos = pos,
+				maxpos = pos,
+				minvel = {x=2, y=3, z=2},
+				maxvel = {x=-2, y=1, z=-2},
+				minacc = {x=0, y= -10, z=0},
+				maxacc = {x=0, y= -10, z=0},
+				minexptime = 0.5,
+				maxexptime = 1,
+				minsize = 1,
+				maxsize = 1,
+				collisiondetection = true,
+				vertical = false,
+				texture = "anvil_spark.png",
+			})
 		end
 	
 		-- do the actual repair
-		input:add_wear( -5000 ); -- equals to what technic toolshop does in 5 seconds
+		input:add_wear( -5000 ) -- equals to what technic toolshop does in 5 seconds
 		inv:set_stack("input", 1, input)
 	
 		-- damage the hammer slightly
-		wielded:add_wear( 100 );
-		puncher:set_wielded_item( wielded );
+		wielded:add_wear( 100 )
+		puncher:set_wielded_item( wielded )
 	end,
 	is_ground_content = false,
 })
 
 -- automatically restore entities lost due to /clearobjects or similar
-minetest.register_abm({
+minetest.register_lbm({
+	name = "anvil:anvil_item_restoration",
 	nodenames = { "anvil:anvil" },
-	interval = 15,
-	chance = 1,
+	run_at_every_load = true,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		pos.y = pos.y + item_displacement
-		if #minetest.get_objects_inside_radius(pos, 0.5) > 0 then return end
+		test_pos = {x=pos.x, y=pos.y + item_displacement, z=pos.z}
+		if #minetest.get_objects_inside_radius(test_pos, 0.5) > 0 then return end
 		update_item(pos, node)
 	end
 })
@@ -295,9 +322,10 @@ minetest.register_abm({
 minetest.register_lbm({
 	name = "anvil:hammer_ejection",
 	nodenames = "anvil:anvil",
+	run_at_every_load = false,
 	action = function(pos, node)
-		local meta = minetest.get_meta(pos);
-		local inv  = meta:get_inventory();
+		local meta = minetest.get_meta(pos)
+		local inv  = meta:get_inventory()
 		if not inv:is_empty("hammer") then
 			local hammer = inv:get_stack("hammer", 1)
 			inv:set_stack("hammer", 1, nil)
