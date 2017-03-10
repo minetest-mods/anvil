@@ -271,7 +271,13 @@ minetest.register_node("anvil:anvil", {
 	
 		-- tell the player when the job is done
 		if(   input:get_wear() == 0 ) then
-			minetest.chat_send_player( puncher:get_player_name(), S('Your @1 has been repaired successfully.', tool_name))
+			local tool_desc
+			if minetest.registered_items[tool_name] and minetest.registered_items[tool_name].description then
+				tool_desc = minetest.registered_items[tool_name].description
+			else
+				tool_desc = tool_name
+			end
+			minetest.chat_send_player( puncher:get_player_name(), S('Your @1 has been repaired successfully.', tool_desc))
 			return
 		else
 			pos.y = pos.y + item_displacement
