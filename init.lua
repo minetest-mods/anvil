@@ -318,7 +318,7 @@ minetest.register_lbm({
 	nodenames = { "anvil:anvil" },
 	run_at_every_load = true,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		test_pos = {x=pos.x, y=pos.y + item_displacement, z=pos.z}
+		local test_pos = {x=pos.x, y=pos.y + item_displacement, z=pos.z}
 		if #minetest.get_objects_inside_radius(test_pos, 0.5) > 0 then return end
 		update_item(pos, node)
 	end
