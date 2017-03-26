@@ -157,6 +157,7 @@ minetest.register_node("anvil:anvil", {
 		end
 		if (listname=='input'
 			and(stack:get_wear() == 0
+			or minetest.get_item_group(stack:get_name(), "not_repaired_by_anvil") ~= 0
 			or stack:get_name() == "technic:water_can" 
 			or stack:get_name() == "technic:lava_can" )) then
 			
