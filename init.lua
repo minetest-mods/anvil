@@ -185,9 +185,10 @@ minetest.register_node("anvil:anvil", {
 			if not inv:is_empty("input") then
 				local return_stack = inv:get_stack("input", 1)
 				inv:set_stack("input", 1, nil)
-				clicker:get_inventory():add_item("main", return_stack)
+				local wield_index = clicker:get_wield_index()
+				clicker:get_inventory():set_stack("main", wield_index, return_stack)
 				remove_item(pos, node)
-				return itemstack
+				return return_stack
 			end		
 		end
 		local this_def = minetest.registered_nodes[node.name]
@@ -214,7 +215,8 @@ minetest.register_node("anvil:anvil", {
 			if not inv:is_empty("input") then
 				local return_stack = inv:get_stack("input", 1)
 				inv:set_stack("input", 1, nil)
-				puncher:get_inventory():add_item("main", return_stack)
+				local wield_index = puncher:get_wield_index()
+				puncher:get_inventory():set_stack("main", wield_index, return_stack)
 				remove_item(pos, node)
 			end		
 		end
