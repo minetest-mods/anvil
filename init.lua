@@ -5,13 +5,17 @@
 -- * the hammer gets dammaged a bit at each repair step
 ---------------------------------------------------------------------------------------
 
+anvil = {
+  setting = {
+    item_displacement = 7/16,
+  }
+}
+
 minetest.register_alias("castle:anvil", "anvil:anvil")
 
 -- internationalization boilerplate
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
-
-anvil_item_displacement = 7/16
 
 -- the hammer for the anvil
 minetest.register_tool("anvil:hammer", {
@@ -69,7 +73,7 @@ minetest.register_entity("anvil:item",{
 })
 
 local remove_item = function(pos, node)
-	local objs = minetest.get_objects_inside_radius({x = pos.x, y = pos.y + anvil_item_displacement, z = pos.z}, .5)
+	local objs = minetest.get_objects_inside_radius({x = pos.x, y = pos.y + anvil.setting.item_displacement, z = pos.z}, .5)
 	if objs then
 		for _, obj in ipairs(objs) do
 			if obj and obj:get_luaentity() and obj:get_luaentity().name == "anvil:item" then
@@ -83,7 +87,7 @@ local update_item = function(pos, node)
 	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
 	if not inv:is_empty("input") then
-		pos.y = pos.y + anvil_item_displacement
+		pos.y = pos.y + anvil.setting.item_displacement
 		tmp.nodename = node.name
 		tmp.texture = inv:get_stack("input", 1):get_name()
 		local e = minetest.add_entity(pos,"anvil:item")
