@@ -32,8 +32,8 @@ msgid ""
 "can repair it. It can also be used for smashing stone, but it is not well "
 "suited to this task."
 msgstr ""
-"Utilisez ce marteau pour frapper une enclume contenant un outil endommage, "
-"ainsi vous pourrez le réparer. Il peut etre aussi utiliser pour casser de la "
+"Utilisez ce marteau pour frapper une enclume contenant un outil endommagé, "
+"ainsi vous pourrez le réparer. Il peut être aussi utilisé pour casser de la "
 "pierre, mais il n'est pas adapté à cette tâche."
 
 #: init.lua:98
@@ -57,8 +57,8 @@ msgid ""
 msgstr ""
 "Cliquez-droit sur cette enclume avec un outil endommagé pour le placer "
 "dessus. Vous pourrez alors réparer l'outil endommagé en le frappant avec un "
-"marteau de forgeron. Des coups successifs seront nécessaire pour réparer "
-"l'outil entiérement. Pour récupérer l'outils, frappez dessus ou faites un "
+"marteau de forgeron. Des coups successifs seront nécessaires pour réparer "
+"l'outil entièrement. Pour récupérer l'outil, frappez dessus ou faites un "
 "click-droit en ayant la main vide."
 
 #: init.lua:155
