@@ -133,25 +133,35 @@ minetest.register_node("anvil:anvil", {
 			{-0.35,-0.1,-0.2,0.35,0.1,0.2},
 		}
 	},
+	
+	on_place = function(itemstack, placer, pointed_thing)
+		if pointed_thing and placer then
+		  if not minetest.is_protected(pointed_thing.above, placer:get_player_name()) then
+		    local meta  = minetest.get_meta(pointed_thing.above)
+		    minetest.set_node(pointed_thing.above, {name="anvil:anvil"})
+		    meta:set_string("anvowner", placer:get_player_name() or "")
+		    itemstack:take_item()
+		  end
+		end
+		return itemstack
+	end,
+	
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
 		inv:set_size("input", 1)
-		meta:set_string("anvowner", placer:get_player_name() or "")
 	end,
 	
 	after_place_node = function(pos, placer)
 		--local meta = minetest.get_meta(pos)
 		--meta:set_string("anvowner", placer:get_player_name() or "")
+		--DO NOT set owner here. there is a glitch by first left and then rightclick to take from anvil
 	end,
 	
 	can_dig = function(pos,player)
 		local meta  = minetest.get_meta(pos)
 		local inv   = meta:get_inventory()
-		--[[
-		if player:get_player_name() ~= meta:get_string("anvowner") then
-			return false
-	]]
+
 		if not inv:is_empty("input") then
 			return false
 		end
@@ -189,8 +199,7 @@ minetest.register_node("anvil:anvil", {
 	on_rightclick = function(pos, node, clicker, itemstack)
 		local meta = minetest.get_meta(pos)
 		local name = clicker:get_player_name()
-		--debug info info
-		minetest.chat_send_player(name,">>> owner is :"..dump(meta:get_string("anvowner")).." used by : "..name)
+		
 		if name == meta:get_string("anvowner") then
 		      if itemstack:get_count() == 0 then
 			      local inv = meta:get_inventory()
