@@ -141,14 +141,14 @@ minetest.register_node("anvil:anvil", {
 	
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("owner", placer:get_player_name() or "")
+		meta:set_string("anvowner", placer:get_player_name() or "")
 	end,
 	
 	can_dig = function(pos,player)
 		local meta  = minetest.get_meta(pos)
 		local inv   = meta:get_inventory()
 		--[[
-		if player:get_player_name() ~= meta:get_string("owner") then
+		if player:get_player_name() ~= meta:get_string("anvowner") then
 			return false
 	]]
 		if not inv:is_empty("input") then
@@ -189,8 +189,8 @@ minetest.register_node("anvil:anvil", {
 		local meta = minetest.get_meta(pos)
 		local name = clicker:get_player_name()
 		--debug info info
-		minetest.chat_send_player(name,">>> owner is :"..dump(meta:get_string("owner")).." used by : "..name)
-		if name == meta:get_string("owner") then
+		minetest.chat_send_player(name,">>> owner is :"..dump(meta:get_string("anvowner")).." used by : "..name)
+		if name == meta:get_string("anvowner") then
 		      if itemstack:get_count() == 0 then
 			      local inv = meta:get_inventory()
 			      if not inv:is_empty("input") then
