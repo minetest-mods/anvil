@@ -188,7 +188,8 @@ minetest.register_node("anvil:anvil", {
 	on_rightclick = function(pos, node, clicker, itemstack)
 		local meta = minetest.get_meta(pos)
 		local name = clicker:get_player_name()
-		--minetest.chat_send_player(name,">>> owner is :"..dump(meta:get_string("owner")).." used by : "..name)
+		--debug info info
+		minetest.chat_send_player(name,">>> owner is :"..dump(meta:get_string("owner")).." used by : "..name)
 		if name == meta:get_string("owner") then
 		      if itemstack:get_count() == 0 then
 			      local inv = meta:get_inventory()
