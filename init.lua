@@ -137,11 +137,12 @@ minetest.register_node("anvil:anvil", {
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
 		inv:set_size("input", 1)
+		meta:set_string("anvowner", placer:get_player_name() or "")
 	end,
 	
 	after_place_node = function(pos, placer)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("anvowner", placer:get_player_name() or "")
+		--local meta = minetest.get_meta(pos)
+		--meta:set_string("anvowner", placer:get_player_name() or "")
 	end,
 	
 	can_dig = function(pos,player)
