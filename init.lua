@@ -134,6 +134,7 @@ minetest.register_node("anvil:anvil", {
 		}
 	},
 	
+	-- write meta when placing, do not use after_place_node
 	on_place = function(itemstack, placer, pointed_thing)
 		if pointed_thing and placer then
 		  if not minetest.is_protected(pointed_thing.above, placer:get_player_name()) then
