@@ -190,27 +190,27 @@ minetest.register_node("anvil:anvil", {
 		local meta = minetest.get_meta(pos)
 		local name = clicker:get_player_name()
 		
-		if name == meta:get_string("owner") then
-		      if itemstack:get_count() == 0 then
+		if name ~= meta:get_string("owner") then return itemstack end
+		if itemstack:get_count() == 0 then
 			      local inv = meta:get_inventory()
 			      if not inv:is_empty("input") then
-				      local return_stack = inv:get_stack("input", 1)
-				      inv:set_stack("input", 1, nil)
-				      local wield_index = clicker:get_wield_index()
-				      clicker:get_inventory():set_stack("main", wield_index, return_stack)
-				      remove_item(pos, node)
-				      return return_stack
-			      end		
-		      end
-		      local this_def = minetest.registered_nodes[node.name]
-		      if this_def.allow_metadata_inventory_put(pos, "input", 1, itemstack:peek_item(), clicker) > 0 then
-			      local s = itemstack:take_item()
-			      local meta = minetest.get_meta(pos)
-			      local inv = meta:get_inventory()
-			      inv:add_item("input", s)
-			      update_item(pos,node)
-		      end
+			      local return_stack = inv:get_stack("input", 1)
+			      inv:set_stack("input", 1, nil)
+			      local wield_index = clicker:get_wield_index()
+			      clicker:get_inventory():set_stack("main", wield_index, return_stack)
+			      remove_item(pos, node)
+			      return return_stack
+		      end		
+		     end
+		     local this_def = minetest.registered_nodes[node.name]
+		     if this_def.allow_metadata_inventory_put(pos, "input", 1, itemstack:peek_item(), clicker) > 0 then
+		      local s = itemstack:take_item()
+		      local meta = minetest.get_meta(pos)
+		      local inv = meta:get_inventory()
+		      inv:add_item("input", s)
+		      update_item(pos,node)
 		end
+		
 		return itemstack
 	end,
 	
@@ -222,7 +222,7 @@ minetest.register_node("anvil:anvil", {
 		local wielded = puncher:get_wielded_item()
 		local meta = minetest.get_meta(pos)
 		local inv  = meta:get_inventory()
-		if meta:get_string("owner") == puncher:get_player_name() then
+		if meta:get_string("owner") ~= puncher:get_player_name() then return end
 		      
 		      if wielded:get_count() == 0 then
 			      if not inv:is_empty("input") then
@@ -324,7 +324,6 @@ minetest.register_node("anvil:anvil", {
 		      -- damage the hammer slightly
 		      wielded:add_wear( 100 )
 		      puncher:set_wielded_item( wielded )
-		end
 	end,
 	is_ground_content = false,
 })
