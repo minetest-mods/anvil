@@ -192,23 +192,23 @@ minetest.register_node("anvil:anvil", {
 		
 		if name ~= meta:get_string("owner") then return itemstack end
 		if itemstack:get_count() == 0 then
-			      local inv = meta:get_inventory()
-			      if not inv:is_empty("input") then
-			      local return_stack = inv:get_stack("input", 1)
-			      inv:set_stack("input", 1, nil)
-			      local wield_index = clicker:get_wield_index()
-			      clicker:get_inventory():set_stack("main", wield_index, return_stack)
-			      remove_item(pos, node)
-			      return return_stack
-		      end		
-		     end
-		     local this_def = minetest.registered_nodes[node.name]
-		     if this_def.allow_metadata_inventory_put(pos, "input", 1, itemstack:peek_item(), clicker) > 0 then
-		      local s = itemstack:take_item()
-		      local meta = minetest.get_meta(pos)
-		      local inv = meta:get_inventory()
-		      inv:add_item("input", s)
-		      update_item(pos,node)
+		local inv = meta:get_inventory()
+			if not inv:is_empty("input") then
+				local return_stack = inv:get_stack("input", 1)
+				inv:set_stack("input", 1, nil)
+				local wield_index = clicker:get_wield_index()
+				clicker:get_inventory():set_stack("main", wield_index, return_stack)
+				remove_item(pos, node)
+				return return_stack
+		      	end		
+		end
+		local this_def = minetest.registered_nodes[node.name]
+		if this_def.allow_metadata_inventory_put(pos, "input", 1, itemstack:peek_item(), clicker) > 0 then
+			local s = itemstack:take_item()
+			local meta = minetest.get_meta(pos)
+			local inv = meta:get_inventory()
+			inv:add_item("input", s)
+			update_item(pos,node)
 		end
 		
 		return itemstack
@@ -224,106 +224,105 @@ minetest.register_node("anvil:anvil", {
 		local inv  = meta:get_inventory()
 		if meta:get_string("owner") ~= puncher:get_player_name() then return end
 		      
-		      if wielded:get_count() == 0 then
-			      if not inv:is_empty("input") then
-				      local return_stack = inv:get_stack("input", 1)
-				      inv:set_stack("input", 1, nil)
-				      local wield_index = puncher:get_wield_index()
-				      puncher:get_inventory():set_stack("main", wield_index, return_stack)
-				      remove_item(pos, node)
-			      end		
-		      end
+		if wielded:get_count() == 0 then
+			if not inv:is_empty("input") then
+				local return_stack = inv:get_stack("input", 1)
+				inv:set_stack("input", 1, nil)
+				local wield_index = puncher:get_wield_index()
+				puncher:get_inventory():set_stack("main", wield_index, return_stack)
+				remove_item(pos, node)
+			end		
+		end
 		      
-		      -- only punching with the hammer is supposed to work
-		      if wielded:get_name() ~= 'anvil:hammer' then
-			      return
-		      end
-		      
-		      local input = inv:get_stack('input',1)
+		-- only punching with the hammer is supposed to work
+		if wielded:get_name() ~= 'anvil:hammer' then
+			return
+		end
+		local input = inv:get_stack('input',1)
 	      
-		      -- only tools can be repaired
-		      if( not( input ) 
-		      or input:is_empty()
-				      or input:get_name() == "technic:water_can" 
-				      or input:get_name() == "technic:lava_can" ) then
-			      return
-		      end
+		-- only tools can be repaired
+		if( not( input ) 
+			or input:is_empty()
+			or input:get_name() == "technic:water_can" 
+			or input:get_name() == "technic:lava_can" ) then
+			return
+		end
 	      
-		      -- 65535 is max damage
-		      local damage_state = 40-math.floor(input:get_wear()/1638)
+		-- 65535 is max damage
+		local damage_state = 40-math.floor(input:get_wear()/1638)
 	      
-		      local tool_name = input:get_name()
+		local tool_name = input:get_name()
 
-		      local hud2 = nil
-		      local hud3 = nil
-		      if( input:get_wear()>0 ) then
-			      hud2 = puncher:hud_add({
-				      hud_elem_type = "statbar",
-				      text = "default_cloud.png^[colorize:#ff0000:256",
-				      number = 40,
-				      direction = 0, -- left to right
-				      position = {x=0.5, y=0.65},
-				      alignment = {x = 0, y = 0},
-				      offset = {x = -320, y = 0},
-				      size = {x=32, y=32},
-			      })
-			      hud3 = puncher:hud_add({
-				      hud_elem_type = "statbar",
-				      text = "default_cloud.png^[colorize:#00ff00:256",
-				      number = damage_state,
-				      direction = 0, -- left to right
-				      position = {x=0.5, y=0.65},
-				      alignment = {x = 0, y = 0},
-				      offset = {x = -320, y = 0},
-				      size = {x=32, y=32},
-			      })
-		      end
-		      minetest.after(2, function()
-			      if( puncher ) then
-				      puncher:hud_remove(hud2)
-				      puncher:hud_remove(hud3)
-			      end
-		      end)
+		local hud2 = nil
+		local hud3 = nil
+		if( input:get_wear()>0 ) then
+			hud2 = puncher:hud_add({
+			hud_elem_type = "statbar",
+			text = "default_cloud.png^[colorize:#ff0000:256",
+			number = 40,
+			direction = 0, -- left to right
+			position = {x=0.5, y=0.65},
+			alignment = {x = 0, y = 0},
+			offset = {x = -320, y = 0},
+			size = {x=32, y=32},
+			})
+			hud3 = puncher:hud_add({
+			hud_elem_type = "statbar",
+			text = "default_cloud.png^[colorize:#00ff00:256",
+			number = damage_state,
+			direction = 0, -- left to right
+			position = {x=0.5, y=0.65},
+			alignment = {x = 0, y = 0},
+			offset = {x = -320, y = 0},
+			size = {x=32, y=32},
+			})
+		end
+		minetest.after(2, function()
+		if( puncher ) then
+			puncher:hud_remove(hud2)
+			puncher:hud_remove(hud3)
+			end
+		end)
 	      
-		      -- tell the player when the job is done
-		      if(   input:get_wear() == 0 ) then
-			      local tool_desc
-			      if minetest.registered_items[tool_name] and minetest.registered_items[tool_name].description then
-				      tool_desc = minetest.registered_items[tool_name].description
-			      else
-				      tool_desc = tool_name
-			      end
-			      minetest.chat_send_player( puncher:get_player_name(), S('Your @1 has been repaired successfully.', tool_desc))
-			      return
-		      else
-			      pos.y = pos.y + anvil.setting.item_displacement
-			      minetest.sound_play({name="anvil_clang"}, {pos=pos})
-			      minetest.add_particlespawner({
-				      amount = 10,
-				      time = 0.1,
-				      minpos = pos,
-				      maxpos = pos,
-				      minvel = {x=2, y=3, z=2},
-				      maxvel = {x=-2, y=1, z=-2},
-				      minacc = {x=0, y= -10, z=0},
-				      maxacc = {x=0, y= -10, z=0},
-				      minexptime = 0.5,
-				      maxexptime = 1,
-				      minsize = 1,
-				      maxsize = 1,
-				      collisiondetection = true,
-				      vertical = false,
-				      texture = "anvil_spark.png",
-			      })
-		      end
+		-- tell the player when the job is done
+		if(   input:get_wear() == 0 ) then
+			local tool_desc
+			if minetest.registered_items[tool_name] and minetest.registered_items[tool_name].description then
+				tool_desc = minetest.registered_items[tool_name].description
+			else
+				tool_desc = tool_name
+			end
+			minetest.chat_send_player( puncher:get_player_name(), S('Your @1 has been repaired successfully.', tool_desc))
+			return
+		else
+			pos.y = pos.y + anvil.setting.item_displacement
+			minetest.sound_play({name="anvil_clang"}, {pos=pos})
+			minetest.add_particlespawner({
+			amount = 10,
+			time = 0.1,
+			minpos = pos,
+			maxpos = pos,
+			minvel = {x=2, y=3, z=2},
+			maxvel = {x=-2, y=1, z=-2},
+			minacc = {x=0, y= -10, z=0},
+			maxacc = {x=0, y= -10, z=0},
+			minexptime = 0.5,
+			maxexptime = 1,
+			minsize = 1,
+			maxsize = 1,
+			collisiondetection = true,
+			vertical = false,
+			texture = "anvil_spark.png",
+			})
+		end
 	      
-		      -- do the actual repair
-		      input:add_wear( -5000 ) -- equals to what technic toolshop does in 5 seconds
-		      inv:set_stack("input", 1, input)
+		-- do the actual repair
+		input:add_wear( -5000 ) -- equals to what technic toolshop does in 5 seconds
+		inv:set_stack("input", 1, input)
 	      
-		      -- damage the hammer slightly
-		      wielded:add_wear( 100 )
-		      puncher:set_wielded_item( wielded )
+		-- damage the hammer slightly
+		wielded:add_wear( 100 )
+		puncher:set_wielded_item( wielded )	
 	end,
 	is_ground_content = false,
 })
