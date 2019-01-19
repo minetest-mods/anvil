@@ -6,9 +6,9 @@
 ---------------------------------------------------------------------------------------
 
 anvil = {
-  setting = {
-    item_displacement = 7/16,
-  }
+	setting = {
+		item_displacement = 7/16,
+	}
 }
 
 minetest.register_alias("castle:anvil", "anvil:anvil")
@@ -24,7 +24,7 @@ minetest.register_tool("anvil:hammer", {
 	_doc_items_usagehelp = S("Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task."),
 	image           = "anvil_tool_steelhammer.png",
 	inventory_image = "anvil_tool_steelhammer.png",
-	
+
 	tool_capabilities = {
 		full_punch_interval = 0.8,
 		max_drop_level=1,
@@ -133,21 +133,19 @@ minetest.register_node("anvil:anvil", {
 			{-0.35,-0.1,-0.2,0.35,0.1,0.2},
 		}
 	},
-	
-	
-	
+
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		local inv = meta:get_inventory()
 		inv:set_size("input", 1)
 	end,
-	
+
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("owner", placer:get_player_name() or "")
 		meta:set_string("infotext",placer:get_player_name().."'s anvil")
 	end,
-	
+
 	can_dig = function(pos,player)
 		local meta  = minetest.get_meta(pos)
 		local inv   = meta:get_inventory()
@@ -157,7 +155,7 @@ minetest.register_node("anvil:anvil", {
 		end
 		return true
 	end,
-	
+
 	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
 		local meta = minetest.get_meta(pos)
 		if listname~="input" then
@@ -166,30 +164,30 @@ minetest.register_node("anvil:anvil", {
 		if (listname=='input'
 			and(stack:get_wear() == 0
 			or minetest.get_item_group(stack:get_name(), "not_repaired_by_anvil") ~= 0
-			or stack:get_name() == "technic:water_can" 
+			or stack:get_name() == "technic:water_can"
 			or stack:get_name() == "technic:lava_can" )) then
-			
+
 			minetest.chat_send_player( player:get_player_name(), S('This anvil is for damaged tools only.'))
 			return 0
 		end
-		
+
 		if meta:get_inventory():room_for_item("input", stack) then
 			return stack:get_count()
 		end
 		return 0
 	end,
-	
+
 	allow_metadata_inventory_take = function(pos, listname, index, stack, player)
 		if listname~="input" then
 			return 0
 		end
 		return stack:get_count()
 	end,
-	
+
 	on_rightclick = function(pos, node, clicker, itemstack)
 		local meta = minetest.get_meta(pos)
 		local name = clicker:get_player_name()
-		
+
 		if name ~= meta:get_string("owner") then return itemstack end
 		if itemstack:get_count() == 0 then
 		local inv = meta:get_inventory()
@@ -200,7 +198,7 @@ minetest.register_node("anvil:anvil", {
 				clicker:get_inventory():set_stack("main", wield_index, return_stack)
 				remove_item(pos, node)
 				return return_stack
-		      	end		
+			end
 		end
 		local this_def = minetest.registered_nodes[node.name]
 		if this_def.allow_metadata_inventory_put(pos, "input", 1, itemstack:peek_item(), clicker) > 0 then
@@ -210,10 +208,10 @@ minetest.register_node("anvil:anvil", {
 			inv:add_item("input", s)
 			update_item(pos,node)
 		end
-		
+
 		return itemstack
 	end,
-	
+
 	on_punch = function(pos, node, puncher)
 		if( not( pos ) or not( node ) or not( puncher )) then
 			return
@@ -222,8 +220,10 @@ minetest.register_node("anvil:anvil", {
 		local wielded = puncher:get_wielded_item()
 		local meta = minetest.get_meta(pos)
 		local inv  = meta:get_inventory()
-		if meta:get_string("owner") ~= puncher:get_player_name() then return end
-		      
+		if meta:get_string("owner") ~= puncher:get_player_name() then
+			return
+		end
+
 		if wielded:get_count() == 0 then
 			if not inv:is_empty("input") then
 				local return_stack = inv:get_stack("input", 1)
@@ -231,26 +231,26 @@ minetest.register_node("anvil:anvil", {
 				local wield_index = puncher:get_wield_index()
 				puncher:get_inventory():set_stack("main", wield_index, return_stack)
 				remove_item(pos, node)
-			end		
+			end
 		end
-		      
+
 		-- only punching with the hammer is supposed to work
 		if wielded:get_name() ~= 'anvil:hammer' then
 			return
 		end
 		local input = inv:get_stack('input',1)
-	      
+
 		-- only tools can be repaired
-		if( not( input ) 
+		if( not( input )
 			or input:is_empty()
-			or input:get_name() == "technic:water_can" 
+			or input:get_name() == "technic:water_can"
 			or input:get_name() == "technic:lava_can" ) then
 			return
 		end
-	      
+
 		-- 65535 is max damage
 		local damage_state = 40-math.floor(input:get_wear()/1638)
-	      
+
 		local tool_name = input:get_name()
 
 		local hud2 = nil
@@ -283,7 +283,7 @@ minetest.register_node("anvil:anvil", {
 			puncher:hud_remove(hud3)
 			end
 		end)
-	      
+
 		-- tell the player when the job is done
 		if(   input:get_wear() == 0 ) then
 			local tool_desc
@@ -315,14 +315,14 @@ minetest.register_node("anvil:anvil", {
 			texture = "anvil_spark.png",
 			})
 		end
-	      
+
 		-- do the actual repair
 		input:add_wear( -5000 ) -- equals to what technic toolshop does in 5 seconds
 		inv:set_stack("input", 1, input)
-	      
+
 		-- damage the hammer slightly
 		wielded:add_wear( 100 )
-		puncher:set_wielded_item( wielded )	
+		puncher:set_wielded_item( wielded )
 	end,
 	is_ground_content = false,
 })
@@ -366,16 +366,18 @@ minetest.register_lbm({
 minetest.register_craft({
 	output = "anvil:anvil",
 	recipe = {
-                {"default:steel_ingot","default:steel_ingot","default:steel_ingot"},
-                {'',                   "default:steel_ingot",''                   },
-                {"default:steel_ingot","default:steel_ingot","default:steel_ingot"} },
+		{"default:steel_ingot","default:steel_ingot","default:steel_ingot"},
+		{'',                   "default:steel_ingot",''                   },
+		{"default:steel_ingot","default:steel_ingot","default:steel_ingot"}
+	}
 })
 
 minetest.register_craft({
 	output = "anvil:hammer",
 	recipe = {
-                {"default:steel_ingot","default:steel_ingot","default:steel_ingot"},
-                {"default:steel_ingot","default:steel_ingot","default:steel_ingot"},
-                {"group:stick","",""} }
+		{"default:steel_ingot","default:steel_ingot","default:steel_ingot"},
+		{"default:steel_ingot","default:steel_ingot","default:steel_ingot"},
+		{"group:stick","",""}
+	}
 })
 
