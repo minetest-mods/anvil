@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-07 22:17-0700\n"
+"POT-Creation-Date: 2019-04-14 21:16-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: XanthinLanguage-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -16,32 +16,32 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: init.lua:19
+#: init.lua:36
 msgid "Steel blacksmithing hammer"
 msgstr ""
 
-#: init.lua:20
+#: init.lua:37
 #, fuzzy
 msgid "A tool for repairing other tools at a blacksmith's anvil."
 msgstr "Stahlhammer um Werkzeuge auf dem Amboss zu reparieren"
 
-#: init.lua:21
+#: init.lua:38
 msgid ""
 "Use this hammer to strike blows upon an anvil bearing a damaged tool and you "
 "can repair it. It can also be used for smashing stone, but it is not well "
 "suited to this task."
 msgstr ""
 
-#: init.lua:98
+#: init.lua:136
 msgid "Anvil"
 msgstr "Amboss"
 
-#: init.lua:99
+#: init.lua:137
 msgid ""
 "A tool for repairing other tools in conjunction with a blacksmith's hammer."
 msgstr ""
 
-#: init.lua:100
+#: init.lua:138
 msgid ""
 "Right-click on this anvil with a damaged tool to place the damaged tool upon "
 "it. You can then repair the damaged tool by striking it with a blacksmith's "
@@ -50,12 +50,16 @@ msgid ""
 "hand."
 msgstr ""
 
-#: init.lua:155
+#: init.lua:193
 #, fuzzy
 msgid "This anvil is for damaged tools only."
 msgstr "Das Werkstueckfeld gilt nur fuer beschaedigtes Werkzeug."
 
-#: init.lua:267
+#: init.lua:199
+msgid "@1 cannot be repaired with an anvil."
+msgstr ""
+
+#: init.lua:325
 msgid "Your @1 has been repaired successfully."
 msgstr ""
 

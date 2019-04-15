@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Italian locale file for the Anvil module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-07 22:17-0700\n"
+"POT-Creation-Date: 2019-04-14 21:16-0600\n"
 "PO-Revision-Date: 2017-08-18 16:14+0100\n"
 "Last-Translator: H4mlet <h4mlet@riseup.net>\n"
 "Language-Team: \n"
@@ -18,15 +18,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.6.10\n"
 
-#: init.lua:19
+#: init.lua:36
 msgid "Steel blacksmithing hammer"
 msgstr "Martello da fabbro di acciaio"
 
-#: init.lua:20
+#: init.lua:37
 msgid "A tool for repairing other tools at a blacksmith's anvil."
 msgstr "Un attrezzo per riparare altri attrezzi su di una incudine da fabbro."
 
-#: init.lua:21
+#: init.lua:38
 msgid ""
 "Use this hammer to strike blows upon an anvil bearing a damaged tool and you "
 "can repair it. It can also be used for smashing stone, but it is not well "
@@ -36,16 +36,16 @@ msgstr ""
 "danneggiato e potrete ripararlo. Può anche essere usato per colpire la "
 "pietra, ma non è molto adatto a questo compito."
 
-#: init.lua:98
+#: init.lua:136
 msgid "Anvil"
 msgstr "Incudine"
 
-#: init.lua:99
+#: init.lua:137
 msgid ""
 "A tool for repairing other tools in conjunction with a blacksmith's hammer."
 msgstr "Un attrezzo per riparare altri attrezzi usando un martello da fabbro."
 
-#: init.lua:100
+#: init.lua:138
 msgid ""
 "Right-click on this anvil with a damaged tool to place the damaged tool upon "
 "it. You can then repair the damaged tool by striking it with a blacksmith's "
@@ -59,10 +59,14 @@ msgstr ""
 "gravemente danneggiato. Per riprendere l'attrezzo colpite o fate click "
 "destro sull'incudine a mani vuote."
 
-#: init.lua:155
+#: init.lua:193
 msgid "This anvil is for damaged tools only."
 msgstr "Questa incudine è solo per attrezzi danneggiati."
 
-#: init.lua:267
+#: init.lua:199
+msgid "@1 cannot be repaired with an anvil."
+msgstr ""
+
+#: init.lua:325
 msgid "Your @1 has been repaired successfully."
 msgstr "La/il vostr* @1 è stat* riparat* con successo."

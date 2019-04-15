@@ -13,12 +13,26 @@ anvil = {
 
 minetest.register_alias("castle:anvil", "anvil:anvil")
 
+local hammer_repairable = minetest.setting_getbool("anvil_hammer_is_repairable")
+if hammer_repairable == nil then hammer_repairable = true end
+
+local make_unrepairable = function(item_name)
+	local item_def = minetest.registered_items[item_name]
+	if item_def then
+		item_def.groups.not_repaired_by_anvil = 1
+		minetest.override_item(item_name, {groups = item_def.groups})
+	end
+end
+make_unrepairable("technic:water_can")
+make_unrepairable("technic:lava_can")
+
 -- internationalization boilerplate
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
 -- the hammer for the anvil
-minetest.register_tool("anvil:hammer", {
+
+local hammer_def = {
 	description = S("Steel blacksmithing hammer"),
 	_doc_items_longdesc = S("A tool for repairing other tools at a blacksmith's anvil."),
 	_doc_items_usagehelp = S("Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task."),
@@ -34,7 +48,13 @@ minetest.register_tool("anvil:hammer", {
 		},
 		damage_groups = {fleshy=6},
 	}
-})
+}
+
+if not hammer_repairable then
+	hammer_def.groups = {["not_repaired_by_anvil"] = 1}
+end
+
+minetest.register_tool("anvil:hammer", hammer_def)
 
 local tmp = {}
 
@@ -168,14 +188,17 @@ minetest.register_node("anvil:anvil", {
 		if listname~="input" then
 			return 0
 		end
-		if (listname=='input'
-			and(stack:get_wear() == 0
-			or minetest.get_item_group(stack:get_name(), "not_repaired_by_anvil") ~= 0
-			or stack:get_name() == "technic:water_can"
-			or stack:get_name() == "technic:lava_can" )) then
-
-			minetest.chat_send_player( player:get_player_name(), S('This anvil is for damaged tools only.'))
-			return 0
+		if (listname=='input') then
+			if (stack:get_wear() == 0) then
+				minetest.chat_send_player( player:get_player_name(), S('This anvil is for damaged tools only.'))
+				return 0
+			end
+		
+			if (minetest.get_item_group(stack:get_name(), "not_repaired_by_anvil") ~= 0) then
+				local item_def = minetest.registered_items[stack:get_name()]
+				minetest.chat_send_player( player:get_player_name(), S('@1 cannot be repaired with an anvil.', item_def.description))
+				return 0
+			end
 		end
 
 		if meta:get_inventory():room_for_item("input", stack) then

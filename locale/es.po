@@ -60,6 +60,10 @@ msgstr ""
 msgid "This anvil is for damaged tools only."
 msgstr "Este yunque es sólo para herramientas dañadas"
 
+#: init.lua:199
+msgid "@1 cannot be repaired with an anvil."
+msgstr ""
+
 #: init.lua:267
 msgid "Your @1 has been repaired successfully."
 msgstr "Su @1 ha sido reparado correctamente."
