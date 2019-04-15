@@ -7,7 +7,7 @@
 
 anvil = {
 	setting = {
-		item_displacement = 7/16,
+		item_displacement = 2/16,
 	}
 }
 
@@ -92,7 +92,14 @@ local update_item = function(pos, node)
 		tmp.texture = inv:get_stack("input", 1):get_name()
 		local e = minetest.add_entity(pos,"anvil:item")
 		local yaw = math.pi*2 - node.param2 * math.pi/2
-		e:setyaw(yaw)
+		if e.set_rotation == nil then
+			-- This is for 0.4.16 support, remove it eventually
+			e:set_yaw(yaw)
+			pos.y = pos.y + 5/16
+			e:set_pos(pos)
+		else
+			e:set_rotation({x=-1.5708, y=yaw, z=0}) -- x is pitch, 1.5708 is 90 degrees.
+		end
 	end
 end
 
