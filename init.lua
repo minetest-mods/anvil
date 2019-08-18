@@ -215,6 +215,9 @@ minetest.register_node("anvil:anvil", {
 	end,
 
 	on_rightclick = function(pos, node, clicker, itemstack)
+		if not clicker or not itemstack then
+			return
+		end
 		local meta = minetest.get_meta(pos)
 		local name = clicker:get_player_name()
 
