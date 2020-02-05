@@ -1,0 +1,30 @@
+# textdomain: anvil
+# This file is distributed under the same license as the PACKAGE package.
+
+#: init.lua:19
+Steel blacksmithing hammer=Martillo de acero para la herrería
+
+#: init.lua:20
+A tool for repairing other tools at a blacksmith's anvil.=Es una herramienta para reparar otras herramientas en el yunque del  herrero
+
+#: init.lua:21
+Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=Use este martillo para dar golpes sobre el yunque donde puso la herramienta dañadaTambien puede ser usado para romper piedra pero no es muy adecuado para esa tarea.
+
+#: init.lua:98
+Anvil=Yunque
+
+#: init.lua:99
+A tool for repairing other tools in conjunction with a blacksmith's hammer.=Es una herramienta para reparar de herramientas dañadas en conjunto con el martillo del herrero.
+
+#: init.lua:100
+Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Haga clic derecho sobre este yunque con una herramienta dañadaPuede reparar la herramienta dañada golpeándola con el martillo del herreroPara reparar completamente una herramienta puede dar varios golpesPara sacar la herramienta, golpeela con la mano vacia o tambien con un clic derecho
+
+#: init.lua:155
+This anvil is for damaged tools only.=Este yunque es sólo para herramientas dañadas
+
+# TODO
+#: init.lua:199
+#@1 cannot be repaired with an anvil.=
+
+#: init.lua:267
+Your @1 has been repaired successfully.=Su @1 ha sido reparado correctamente.

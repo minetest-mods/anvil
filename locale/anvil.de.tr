@@ -1,0 +1,38 @@
+# textdomain: anvil
+# This file is distributed under the same license as the PACKAGE package.
+
+# TODO
+#: init.lua:36
+#Steel blacksmithing hammer=
+
+#: init.lua:37
+# fuzzy
+A tool for repairing other tools at a blacksmith's anvil.=Stahlhammer um Werkzeuge auf dem Amboss zu reparieren
+
+# TODO
+#: init.lua:38
+#Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=
+
+#: init.lua:136
+Anvil=Amboss
+
+# TODO
+#: init.lua:137
+#A tool for repairing other tools in conjunction with a blacksmith's hammer.=
+
+# TODO
+#: init.lua:138
+#Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=
+
+#: init.lua:193
+# fuzzy
+This anvil is for damaged tools only.=Das Werkstueckfeld gilt nur fuer beschaedigtes Werkzeug.
+
+# TODO
+#: init.lua:199
+#@1 cannot be repaired with an anvil.=
+
+# TODO
+#: init.lua:325
+#Your @1 has been repaired successfully.=
+

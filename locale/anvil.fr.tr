@@ -1,0 +1,29 @@
+# textdomain: anvil
+# This file is distributed under the same license as the PACKAGE package.
+
+#: init.lua:36
+Steel blacksmithing hammer=Marteau de forgeron en acier
+
+#: init.lua:37
+A tool for repairing other tools at a blacksmith's anvil.=Un outil pour réparer les autres outils avec une enclume de forgeron.
+
+#: init.lua:38
+Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=Utilisez ce marteau pour frapper une enclume contenant un outil endommagé, ainsi vous pourrez le réparer. Il peut être aussi utilisé pour casser de la pierre, mais il n'est pas adapté à cette tâche.
+
+#: init.lua:136
+Anvil=Enclume
+
+#: init.lua:137
+A tool for repairing other tools in conjunction with a blacksmith's hammer.=Un outil pour réparer les autres outils à utiliser avec un marteau de forgeron.
+
+#: init.lua:138
+Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Cliquez-droit sur cette enclume avec un outil endommagé pour le placer dessus. Vous pourrez alors réparer l'outil endommagé en le frappant avec un marteau de forgeron. Des coups successifs seront nécessaires pour réparer l'outil entièrement. Pour récupérer l'outil, frappez dessus ou faites un click-droit en ayant la main vide.
+
+#: init.lua:193
+This anvil is for damaged tools only.=L'enclume s'utilise sur les outils endommagés.
+
+#: init.lua:199
+@1 cannot be repaired with an anvil.=@1 ne peut pas être réparé avec une enclume.
+
+#: init.lua:325
+Your @1 has been repaired successfully.=Votre @1 a été réparé avec succès.
