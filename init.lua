@@ -16,15 +16,15 @@ minetest.register_alias("castle:anvil", "anvil:anvil")
 local hammer_repairable = minetest.setting_getbool("anvil_hammer_is_repairable")
 if hammer_repairable == nil then hammer_repairable = true end
 
-local make_unrepairable = function(item_name)
+anvil.make_unrepairable = function(item_name)
 	local item_def = minetest.registered_items[item_name]
 	if item_def then
 		item_def.groups.not_repaired_by_anvil = 1
 		minetest.override_item(item_name, {groups = item_def.groups})
 	end
 end
-make_unrepairable("technic:water_can")
-make_unrepairable("technic:lava_can")
+anvil.make_unrepairable("technic:water_can")
+anvil.make_unrepairable("technic:lava_can")
 
 -- internationalization boilerplate
 local MP = minetest.get_modpath(minetest.get_current_modname())
