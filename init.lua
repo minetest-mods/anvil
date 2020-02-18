@@ -26,9 +26,7 @@ end
 anvil.make_unrepairable("technic:water_can")
 anvil.make_unrepairable("technic:lava_can")
 
--- internationalization boilerplate
-local MP = minetest.get_modpath(minetest.get_current_modname())
-local S, NS = dofile(MP.."/intllib.lua")
+local S = minetest.get_translator(minetest.get_current_modname())
 
 -- the hammer for the anvil
 
@@ -170,7 +168,7 @@ minetest.register_node("anvil:anvil", {
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("owner", placer:get_player_name() or "")
-		meta:set_string("infotext",placer:get_player_name().."'s anvil")
+		meta:set_string("infotext", S("@1's anvil", placer:get_player_name()))
 	end,
 
 	can_dig = function(pos,player)
