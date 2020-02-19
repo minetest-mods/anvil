@@ -2,7 +2,7 @@
 -- simple anvil that can be used to repair tools
 ---------------------------------------------------------------------------------------
 -- * can be used to repair tools
--- * the hammer gets dammaged a bit at each repair step
+-- * the hammer gets damaged a bit at each repair step
 ---------------------------------------------------------------------------------------
 
 anvil = {
@@ -13,8 +13,7 @@ anvil = {
 
 minetest.register_alias("castle:anvil", "anvil:anvil")
 
-local hammer_repairable = minetest.setting_getbool("anvil_hammer_is_repairable")
-if hammer_repairable == nil then hammer_repairable = true end
+local hammer_repairable = minetest.settings:get_bool("anvil_hammer_is_repairable", true)
 
 anvil.make_unrepairable = function(item_name)
 	local item_def = minetest.registered_items[item_name]

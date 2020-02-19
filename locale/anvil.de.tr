@@ -1,5 +1,7 @@
 # textdomain: anvil
 
+
+# ./init.lua
 @1 cannot be repaired with an anvil.=
 @1's anvil=
 A tool for repairing other tools at a blacksmith's anvil.=Stahlhammer um Werkzeuge auf dem Amboss zu reparieren

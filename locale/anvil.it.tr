@@ -1,5 +1,7 @@
 # textdomain: anvil
 
+
+# ./init.lua
 @1 cannot be repaired with an anvil.=
 @1's anvil=
 A tool for repairing other tools at a blacksmith's anvil.=Un attrezzo per riparare altri attrezzi su di una incudine da fabbro.
@@ -10,4 +12,3 @@ Steel blacksmithing hammer=Martello da fabbro di acciaio
 This anvil is for damaged tools only.=Questa incudine è solo per attrezzi danneggiati.
 Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=Usate questo martello per colpire una incudine su cui è posto un attrezzo danneggiato e potrete ripararlo. Può anche essere usato per colpire la pietra, ma non è molto adatto a questo compito.
 Your @1 has been repaired successfully.=La/il vostr* @1 è stat* riparat* con successo.
-##### not used anymore #####

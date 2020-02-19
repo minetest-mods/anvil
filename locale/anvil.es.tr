@@ -1,5 +1,7 @@
 # textdomain: anvil
 
+
+# ./init.lua
 @1 cannot be repaired with an anvil.=
 @1's anvil=
 A tool for repairing other tools at a blacksmith's anvil.=Es una herramienta para reparar otras herramientas en el yunque del herrero
@@ -10,4 +12,3 @@ Steel blacksmithing hammer=Martillo de acero para la herrería
 This anvil is for damaged tools only.=Este yunque es sólo para herramientas dañadas
 Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=Use este martillo para dar golpes sobre el yunque donde puso la herramienta dañada Tambien puede ser usado para romper piedra pero no es muy adecuado para esa tarea.
 Your @1 has been repaired successfully.=Su @1 ha sido reparado correctamente.
-##### not used anymore #####
