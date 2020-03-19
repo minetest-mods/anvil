@@ -2,8 +2,8 @@
 
 
 # ./init.lua
-@1 cannot be repaired with an anvil.=
-@1's anvil=
+@1 cannot be repaired with an anvil.=@1 ne peut pas être réparé avec une enclume.
+@1's anvil=enclume de @1
 A tool for repairing other tools at a blacksmith's anvil.=Un outil pour réparer les autres outils avec une enclume de forgeron.
 A tool for repairing other tools in conjunction with a blacksmith's hammer.=Un outil pour réparer les autres outils à utiliser avec un marteau de forgeron.
 Anvil=Enclume
