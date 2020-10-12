@@ -190,7 +190,7 @@ minetest.register_node("anvil:anvil", {
 				minetest.chat_send_player( player:get_player_name(), S('This anvil is for damaged tools only.'))
 				return 0
 			end
-		
+
 			if (minetest.get_item_group(stack:get_name(), "not_repaired_by_anvil") ~= 0) then
 				local item_def = minetest.registered_items[stack:get_name()]
 				minetest.chat_send_player( player:get_player_name(), S('@1 cannot be repaired with an anvil.', item_def.description))
@@ -217,15 +217,17 @@ minetest.register_node("anvil:anvil", {
 		end
 		local meta = minetest.get_meta(pos)
 		local name = clicker:get_player_name()
+		local owner = meta:get_string("owner")
 
-		if name ~= meta:get_string("owner") then return itemstack end
+		if name ~= owner then return itemstack end
 		if itemstack:get_count() == 0 then
-		local inv = meta:get_inventory()
+			local inv = meta:get_inventory()
 			if not inv:is_empty("input") then
 				local return_stack = inv:get_stack("input", 1)
 				inv:set_stack("input", 1, nil)
 				local wield_index = clicker:get_wield_index()
 				clicker:get_inventory():set_stack("main", wield_index, return_stack)
+				meta:set_string("infotext", S("@1's anvil", owner))
 				remove_item(pos, node)
 				return return_stack
 			end
@@ -236,6 +238,11 @@ minetest.register_node("anvil:anvil", {
 			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
 			inv:add_item("input", s)
+			local meta_description = s:get_meta():get_string("description")
+			if "" ~= meta_description then
+				meta:set_string("infotext", S("@1's anvil\n@2", owner, meta_description))
+			end
+			meta:set_int("informed", 0)
 			update_item(pos,node)
 		end
 
@@ -250,7 +257,8 @@ minetest.register_node("anvil:anvil", {
 		local wielded = puncher:get_wielded_item()
 		local meta = minetest.get_meta(pos)
 		local inv  = meta:get_inventory()
-		if meta:get_string("owner") ~= puncher:get_player_name() then
+		local owner = meta:get_string("owner")
+		if owner ~= puncher:get_player_name() then
 			return
 		end
 
@@ -260,6 +268,7 @@ minetest.register_node("anvil:anvil", {
 				inv:set_stack("input", 1, nil)
 				local wield_index = puncher:get_wield_index()
 				puncher:get_inventory():set_stack("main", wield_index, return_stack)
+				meta:set_string("infotext", S("@1's anvil", owner))
 				remove_item(pos, node)
 			end
 		end
@@ -316,8 +325,14 @@ minetest.register_node("anvil:anvil", {
 
 		-- tell the player when the job is done
 		if(   input:get_wear() == 0 ) then
+			-- but only once
+			if 0 < meta:get_int("informed") then return end
+			meta:set_int("informed", 1)
 			local tool_desc
-			if minetest.registered_items[tool_name] and minetest.registered_items[tool_name].description then
+			local meta_description = input:get_meta():get_string("description")
+			if "" ~= meta_description then
+				tool_desc = meta_description
+			elseif minetest.registered_items[tool_name] and minetest.registered_items[tool_name].description then
 				tool_desc = minetest.registered_items[tool_name].description
 			else
 				tool_desc = tool_name
@@ -410,4 +425,3 @@ minetest.register_craft({
 		{"group:stick","",""}
 	}
 })
-
