@@ -240,7 +240,7 @@ minetest.register_node("anvil:anvil", {
 			inv:add_item("input", s)
 			local meta_description = s:get_meta():get_string("description")
 			if "" ~= meta_description then
-				meta:set_string("infotext", S("@1's anvil", owner) .. "\n" .. meta_description))
+				meta:set_string("infotext", S("@1's anvil", owner) .. "\n" .. meta_description)
 			end
 			meta:set_int("informed", 0)
 			update_item(pos,node)
