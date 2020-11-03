@@ -4,8 +4,10 @@
 
 ### init.lua ###
 
-@1 cannot be repaired with an anvil.=
-@1's anvil=
+#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
+@1 cannot be repaired with an anvil.=@1 no se puede reparar con un yunque.
+#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
+@1's anvil=Yunque de @1
 A tool for repairing other tools at a blacksmith's anvil.=Es una herramienta para reparar otras herramientas en el yunque del herrero
 
 A tool for repairing other tools in conjunction with a blacksmith's hammer.=Es una herramienta para reparar de herramientas dañadas en conjunto con el martillo del herrero.

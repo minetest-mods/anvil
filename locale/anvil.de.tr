@@ -4,22 +4,29 @@
 
 ### init.lua ###
 
-@1 cannot be repaired with an anvil.=
-@1's anvil=
+#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
+@1 cannot be repaired with an anvil.=@1 kann nicht mit einem Amboss repariert werden.
+#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
+@1's anvil=@1 Amboss
 A tool for repairing other tools at a blacksmith's anvil.=Stahlhammer um Werkzeuge auf dem Amboss zu reparieren
 
-A tool for repairing other tools in conjunction with a blacksmith's hammer.=
+#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
+A tool for repairing other tools in conjunction with a blacksmith's hammer.=Ein Werkzeug zur Reparatur anderer Werkzeuge in Verbindung mit einem Schmiedehammer.
 
 Anvil=Amboss
 
-Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=
+#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
+Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Klicken Sie mit einem beschädigten Werkzeug mit der rechten Maustaste auf diesen Amboss, um das beschädigte Werkzeug darauf zu platzieren. Sie können das beschädigte Werkzeug dann reparieren, indem Sie es mit einem Schmiedehammer schlagen. Wiederholte Schläge können erforderlich sein, um ein stark abgenutztes Werkzeug vollständig zu reparieren. Um das Werkzeug abzurufen, schlagen Sie entweder mit einer leeren Hand auf den Amboss oder klicken Sie mit der rechten Maustaste darauf.
 
-Steel blacksmithing hammer=
+#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
+Steel blacksmithing hammer=Stahlschmiedehammer
 This anvil is for damaged tools only.=Das Werkstueckfeld gilt nur fuer beschaedigtes Werkzeug.
 
-Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=
+#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
+Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=Schlagen Sie mit diesem Hammer auf einen Amboss mit einem beschädigten Werkzeug und reparieren Sie ihn. Es kann auch zum Zertrümmern von Steinen verwendet werden, ist jedoch für diese Aufgabe nicht gut geeignet.
 
-Your @1 has been repaired successfully.=
+#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
+Your @1 has been repaired successfully.=Ihr @1 wurde erfolgreich repariert.
 
 
 ##### not used anymore #####
