@@ -317,7 +317,7 @@ minetest.register_node("anvil:anvil", {
 			})
 		end
 		minetest.after(2, function()
-		if( puncher ) then
+		if( puncher ) and ( hud2 ) and ( hud3 ) then
 			puncher:hud_remove(hud2)
 			puncher:hud_remove(hud3)
 			end
