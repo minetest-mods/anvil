@@ -22,8 +22,22 @@ anvil.make_unrepairable = function(item_name)
 		minetest.override_item(item_name, {groups = item_def.groups})
 	end
 end
+
+-- make rechargeable technic tools unrepairable
 anvil.make_unrepairable("technic:water_can")
 anvil.make_unrepairable("technic:lava_can")
+anvil.make_unrepairable("technic:battery")
+anvil.make_unrepairable("technic:vacuum")
+anvil.make_unrepairable("technic:prospector")
+anvil.make_unrepairable("technic:sonic_screwdriver")
+anvil.make_unrepairable("technic:chainsaw")
+anvil.make_unrepairable("technic:laser_mk1")
+anvil.make_unrepairable("technic:laser_mk2")
+anvil.make_unrepairable("technic:laser_mk3")
+anvil.make_unrepairable("technic:mining_drill")
+anvil.make_unrepairable("technic:mining_drill_mk2")
+anvil.make_unrepairable("technic:mining_drill_mk3")
+
 
 local S = minetest.get_translator(minetest.get_current_modname())
 
