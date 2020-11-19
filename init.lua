@@ -280,10 +280,7 @@ minetest.register_node("anvil:anvil", {
 		local input = inv:get_stack('input',1)
 
 		-- only tools can be repaired
-		if( not( input )
-			or input:is_empty()
-			or input:get_name() == "technic:water_can"
-			or input:get_name() == "technic:lava_can" ) then
+		if not input or input:is_empty() then
 			return
 		end
 
