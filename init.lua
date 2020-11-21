@@ -18,8 +18,9 @@ local hammer_repairable = minetest.settings:get_bool("anvil_hammer_is_repairable
 anvil.make_unrepairable = function(item_name)
 	local item_def = minetest.registered_items[item_name]
 	if item_def then
-		item_def.groups.not_repaired_by_anvil = 1
-		minetest.override_item(item_name, {groups = item_def.groups})
+		local groups = { not_repaired_by_anvil = 1 }
+		for k, v in pairs(item_def.groups) do groups[k] = v end
+		minetest.override_item(item_name, {groups = groups})
 	end
 end
 
