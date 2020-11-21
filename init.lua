@@ -22,8 +22,32 @@ anvil.make_unrepairable = function(item_name)
 		minetest.override_item(item_name, {groups = item_def.groups})
 	end
 end
+
+-- make rechargeable technic tools unrepairable
 anvil.make_unrepairable("technic:water_can")
 anvil.make_unrepairable("technic:lava_can")
+anvil.make_unrepairable("technic:flashlight")
+anvil.make_unrepairable("technic:battery")
+anvil.make_unrepairable("technic:vacuum")
+anvil.make_unrepairable("technic:prospector")
+anvil.make_unrepairable("technic:sonic_screwdriver")
+anvil.make_unrepairable("technic:chainsaw")
+anvil.make_unrepairable("technic:laser_mk1")
+anvil.make_unrepairable("technic:laser_mk2")
+anvil.make_unrepairable("technic:laser_mk3")
+anvil.make_unrepairable("technic:mining_drill")
+anvil.make_unrepairable("technic:mining_drill_mk2")
+anvil.make_unrepairable("technic:mining_drill_mk2_1")
+anvil.make_unrepairable("technic:mining_drill_mk2_2")
+anvil.make_unrepairable("technic:mining_drill_mk2_3")
+anvil.make_unrepairable("technic:mining_drill_mk2_4")
+anvil.make_unrepairable("technic:mining_drill_mk3")
+anvil.make_unrepairable("technic:mining_drill_mk3_1")
+anvil.make_unrepairable("technic:mining_drill_mk3_2")
+anvil.make_unrepairable("technic:mining_drill_mk3_3")
+anvil.make_unrepairable("technic:mining_drill_mk3_4")
+anvil.make_unrepairable("technic:mining_drill_mk3_5")
+
 
 local S = minetest.get_translator(minetest.get_current_modname())
 
@@ -280,10 +304,7 @@ minetest.register_node("anvil:anvil", {
 		local input = inv:get_stack('input',1)
 
 		-- only tools can be repaired
-		if( not( input )
-			or input:is_empty()
-			or input:get_name() == "technic:water_can"
-			or input:get_name() == "technic:lava_can" ) then
+		if not input or input:is_empty() then
 			return
 		end
 
