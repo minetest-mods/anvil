@@ -191,10 +191,25 @@ minetest.register_node("anvil:anvil", {
 		inv:set_size("input", 1)
 	end,
 
-	after_place_node = function(pos, placer)
+	after_place_node = function(pos, placer, itemstack)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("owner", placer:get_player_name() or "")
-		meta:set_string("infotext", S("@1's anvil", placer:get_player_name()))
+		local stackmeta = itemstack:get_meta()
+		if stackmeta:get_int("shared") == 1 then
+			meta:set_int("shared", 1)
+			meta:set_string("infotext", S("Shared anvil"))
+		else
+			meta:set_string("owner", placer:get_player_name() or "")
+			meta:set_string("infotext", S("@1's anvil", placer:get_player_name()))
+		end
+	end,
+
+	preserve_metadata = function(pos, oldnode, oldmeta, drops)
+		if next(drops) and tonumber(oldmeta.shared) == 1 then
+			local meta = drops[next(drops)]:get_meta()
+			meta:set_int("shared", 1)
+			meta:set_string("description", S("Shared anvil"))
+		end
+		return drops
 	end,
 
 	can_dig = function(pos,player)
@@ -245,8 +260,9 @@ minetest.register_node("anvil:anvil", {
 		local meta = minetest.get_meta(pos)
 		local name = clicker:get_player_name()
 		local owner = meta:get_string("owner")
+		local shared = meta:get_int("shared") == 1
 
-		if name ~= owner then return itemstack end
+		if name ~= owner and not shared then return itemstack end
 		if itemstack:get_count() == 0 then
 			local inv = meta:get_inventory()
 			if not inv:is_empty("input") then
@@ -254,7 +270,11 @@ minetest.register_node("anvil:anvil", {
 				inv:set_stack("input", 1, nil)
 				local wield_index = clicker:get_wield_index()
 				clicker:get_inventory():set_stack("main", wield_index, return_stack)
-				meta:set_string("infotext", S("@1's anvil", owner))
+				if shared then
+					meta:set_string("infotext", S("Shared anvil"))
+				else
+					meta:set_string("infotext", S("@1's anvil", owner))
+				end
 				remove_item(pos, node)
 				return return_stack
 			end
@@ -267,7 +287,11 @@ minetest.register_node("anvil:anvil", {
 			inv:add_item("input", s)
 			local meta_description = s:get_meta():get_string("description")
 			if "" ~= meta_description then
-				meta:set_string("infotext", S("@1's anvil", owner) .. "\n" .. meta_description)
+				if shared then
+					meta:set_string("infotext", S("Shared anvil"))
+				else
+					meta:set_string("infotext", S("@1's anvil", owner) .. "\n" .. meta_description)
+				end
 			end
 			meta:set_int("informed", 0)
 			update_item(pos,node)
@@ -285,7 +309,8 @@ minetest.register_node("anvil:anvil", {
 		local meta = minetest.get_meta(pos)
 		local inv  = meta:get_inventory()
 		local owner = meta:get_string("owner")
-		if owner ~= puncher:get_player_name() then
+		local shared = meta:get_int("shared") == 1
+		if owner ~= puncher:get_player_name() and not shared then
 			return
 		end
 
@@ -295,7 +320,11 @@ minetest.register_node("anvil:anvil", {
 				inv:set_stack("input", 1, nil)
 				local wield_index = puncher:get_wield_index()
 				puncher:get_inventory():set_stack("main", wield_index, return_stack)
-				meta:set_string("infotext", S("@1's anvil", owner))
+				if shared then
+					meta:set_string("infotext", S("Shared anvil"))
+				else
+					meta:set_string("infotext", S("@1's anvil", owner))
+				end
 				remove_item(pos, node)
 			end
 		end
@@ -432,6 +461,21 @@ minetest.register_lbm({
 ---------------------------------------------------------------------------------------
 -- crafting receipes
 ---------------------------------------------------------------------------------------
+minetest.register_craft({
+	output = "anvil:anvil",
+	type = "shapeless",
+	recipe = { "anvil:anvil" }
+})
+
+local shared_anvil_craft_stack = ItemStack("anvil:anvil")
+shared_anvil_craft_stack:get_meta():set_int("shared", 1)
+shared_anvil_craft_stack:get_meta():set_string("description", S("Shared anvil"))
+minetest.register_craft({
+	output = shared_anvil_craft_stack:to_string(),
+	type = "shapeless",
+	recipe = { "anvil:anvil", "default:paper" }
+})
+
 minetest.register_craft({
 	output = "anvil:anvil",
 	recipe = {
