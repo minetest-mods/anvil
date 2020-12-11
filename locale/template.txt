@@ -14,6 +14,7 @@ Anvil=
 
 Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=
 
+Shared anvil=
 Steel blacksmithing hammer=
 This anvil is for damaged tools only.=
 
