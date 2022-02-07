@@ -7,7 +7,7 @@
 
 anvil = {
 	setting = {
-		item_displacement = 2/16,
+		item_displacement = 2 / 16,
 	}
 }
 
@@ -19,8 +19,10 @@ anvil.make_unrepairable = function(item_name)
 	local item_def = minetest.registered_items[item_name]
 	if item_def then
 		-- Drop table reference. Copy other values over.
-		local groups = { not_repaired_by_anvil = 1 }
-		for k, v in pairs(item_def.groups) do groups[k] = v end
+		local groups = {not_repaired_by_anvil = 1}
+		for k, v in pairs(item_def.groups) do
+			groups[k] = v
+		end
 		minetest.override_item(item_name, {groups = groups})
 	end
 end
@@ -60,17 +62,17 @@ local hammer_def = {
 	description = S("Steel blacksmithing hammer"),
 	_doc_items_longdesc = S("A tool for repairing other tools at a blacksmith's anvil."),
 	_doc_items_usagehelp = S("Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task."),
-	image           = "anvil_tool_steelhammer.png",
+	image = "anvil_tool_steelhammer.png",
 	inventory_image = "anvil_tool_steelhammer.png",
 
 	tool_capabilities = {
 		full_punch_interval = 0.8,
-		max_drop_level=1,
-		groupcaps={
-		-- about equal to a stone pick (it's not intended as a tool)
-			cracky={times={[2]=2.00, [3]=1.20}, uses=30, maxlevel=1},
+		max_drop_level = 1,
+		groupcaps = {
+			-- about equal to a stone pick (it's not intended as a tool)
+			cracky = {times = {[2] = 2.00, [3] = 1.20}, uses = 30, maxlevel = 1},
 		},
-		damage_groups = {fleshy=6},
+		damage_groups = {fleshy = 6},
 	}
 }
 
@@ -82,13 +84,13 @@ minetest.register_tool("anvil:hammer", hammer_def)
 
 local tmp = {}
 
-minetest.register_entity("anvil:item",{
+minetest.register_entity("anvil:item", {
 	hp_max = 1,
-	visual="wielditem",
-	visual_size={x=.33,y=.33},
-	collisionbox = {0,0,0,0,0,0},
-	physical=false,
-	textures={"air"},
+	visual = "wielditem",
+	visual_size = {x = .33, y = .33},
+	collisionbox = {0, 0, 0, 0, 0, 0},
+	physical = false,
+	textures = {"air"},
 	on_activate = function(self, staticdata)
 		if tmp.nodename ~= nil and tmp.texture ~= nil then
 			self.nodename = tmp.nodename
@@ -97,7 +99,7 @@ minetest.register_entity("anvil:item",{
 			tmp.texture = nil
 		else
 			if staticdata ~= nil and staticdata ~= "" then
-				local data = staticdata:split(';')
+				local data = staticdata:split(";")
 				if data and data[1] and data[2] then
 					self.nodename = data[1]
 					self.texture = data[2]
@@ -105,12 +107,12 @@ minetest.register_entity("anvil:item",{
 			end
 		end
 		if self.texture ~= nil then
-			self.object:set_properties({textures={self.texture}})
+			self.object:set_properties({textures = {self.texture}})
 		end
 	end,
 	get_staticdata = function(self)
 		if self.nodename ~= nil and self.texture ~= nil then
-			return self.nodename .. ';' .. self.texture
+			return self.nodename .. ";" .. self.texture
 		end
 		return ""
 	end,
@@ -134,15 +136,15 @@ local update_item = function(pos, node)
 		pos.y = pos.y + anvil.setting.item_displacement
 		tmp.nodename = node.name
 		tmp.texture = inv:get_stack("input", 1):get_name()
-		local e = minetest.add_entity(pos,"anvil:item")
-		local yaw = math.pi*2 - node.param2 * math.pi/2
+		local e = minetest.add_entity(pos, "anvil:item")
+		local yaw = math.pi * 2 - node.param2 * math.pi / 2
 		if e.set_rotation == nil then
 			-- This is for 0.4.16 support, remove it eventually
 			e:set_yaw(yaw)
-			pos.y = pos.y + 5/16
+			pos.y = pos.y + 5 / 16
 			e:set_pos(pos)
 		else
-			e:set_rotation({x=-1.5708, y=yaw, z=0}) -- x is pitch, 1.5708 is 90 degrees.
+			e:set_rotation({x = -1.5708, y = yaw, z = 0}) -- x is pitch, 1.5708 is 90 degrees.
 		end
 	end
 end
@@ -161,27 +163,27 @@ minetest.register_node("anvil:anvil", {
 	_doc_items_longdesc = S("A tool for repairing other tools in conjunction with a blacksmith's hammer."),
 	_doc_items_usagehelp = S("Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand."),
 	tiles = {"default_stone.png"},
-	paramtype  = "light",
+	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {cracky=2},
+	groups = {cracky = 2},
 	sounds = metal_sounds,
 	-- the nodebox model comes from realtest
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.5,-0.5,-0.3,0.5,-0.4,0.3},
-			{-0.35,-0.4,-0.25,0.35,-0.3,0.25},
-			{-0.3,-0.3,-0.15,0.3,-0.1,0.15},
-			{-0.35,-0.1,-0.2,0.35,0.1,0.2},
+			{-0.5, -0.5, -0.3, 0.5, -0.4, 0.3},
+			{-0.35, -0.4, -0.25, 0.35, -0.3, 0.25},
+			{-0.3, -0.3, -0.15, 0.3, -0.1, 0.15},
+			{-0.35, -0.1, -0.2, 0.35, 0.1, 0.2},
 		},
 	},
 	selection_box = {
 		type = "fixed",
 		fixed = {
-			{-0.5,-0.5,-0.3,0.5,-0.4,0.3},
-			{-0.35,-0.4,-0.25,0.35,-0.3,0.25},
-			{-0.3,-0.3,-0.15,0.3,-0.1,0.15},
-			{-0.35,-0.1,-0.2,0.35,0.1,0.2},
+			{-0.5, -0.5, -0.3, 0.5, -0.4, 0.3},
+			{-0.35, -0.4, -0.25, 0.35, -0.3, 0.25},
+			{-0.3, -0.3, -0.15, 0.3, -0.1, 0.15},
+			{-0.35, -0.1, -0.2, 0.35, 0.1, 0.2},
 		}
 	},
 
@@ -212,9 +214,9 @@ minetest.register_node("anvil:anvil", {
 		return drops
 	end,
 
-	can_dig = function(pos,player)
-		local meta  = minetest.get_meta(pos)
-		local inv   = meta:get_inventory()
+	can_dig = function(pos, player)
+		local meta = minetest.get_meta(pos)
+		local inv = meta:get_inventory()
 
 		if not inv:is_empty("input") then
 			return false
@@ -224,20 +226,21 @@ minetest.register_node("anvil:anvil", {
 
 	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
 		local meta = minetest.get_meta(pos)
-		if listname~="input" then
+		if listname ~= "input" then
 			return 0
 		end
-		if (listname=='input') then
-			if (stack:get_wear() == 0) then
-				minetest.chat_send_player( player:get_player_name(), S('This anvil is for damaged tools only.'))
-				return 0
-			end
 
-			if (minetest.get_item_group(stack:get_name(), "not_repaired_by_anvil") ~= 0) then
-				local item_def = minetest.registered_items[stack:get_name()]
-				minetest.chat_send_player( player:get_player_name(), S('@1 cannot be repaired with an anvil.', item_def.description))
-				return 0
-			end
+		local player_name = player:get_player_name()
+		if stack:get_wear() == 0 then
+			minetest.chat_send_player(player_name, S("This anvil is for damaged tools only."))
+			return 0
+		end
+
+		local stack_name = stack:get_name()
+		if minetest.get_item_group(stack_name, "not_repaired_by_anvil") ~= 0 then
+			local item_def = minetest.registered_items[stack_name]
+			minetest.chat_send_player(player_name, S("@1 cannot be repaired with an anvil.", item_def.description))
+			return 0
 		end
 
 		if meta:get_inventory():room_for_item("input", stack) then
@@ -247,7 +250,7 @@ minetest.register_node("anvil:anvil", {
 	end,
 
 	allow_metadata_inventory_take = function(pos, listname, index, stack, player)
-		if listname~="input" then
+		if listname ~= "input" then
 			return 0
 		end
 		return stack:get_count()
@@ -262,7 +265,9 @@ minetest.register_node("anvil:anvil", {
 		local owner = meta:get_string("owner")
 		local shared = meta:get_int("shared") == 1
 
-		if name ~= owner and not shared then return itemstack end
+		if name ~= owner and not shared then
+			return itemstack
+		end
 		if itemstack:get_count() == 0 then
 			local inv = meta:get_inventory()
 			if not inv:is_empty("input") then
@@ -294,20 +299,20 @@ minetest.register_node("anvil:anvil", {
 				end
 			end
 			meta:set_int("informed", 0)
-			update_item(pos,node)
+			update_item(pos, node)
 		end
 
 		return itemstack
 	end,
 
 	on_punch = function(pos, node, puncher)
-		if( not( pos ) or not( node ) or not( puncher )) then
+		if not pos or not node or not puncher then
 			return
 		end
 
 		local wielded = puncher:get_wielded_item()
 		local meta = minetest.get_meta(pos)
-		local inv  = meta:get_inventory()
+		local inv = meta:get_inventory()
 		local owner = meta:get_string("owner")
 		local shared = meta:get_int("shared") == 1
 		if owner ~= puncher:get_player_name() and not shared then
@@ -330,10 +335,10 @@ minetest.register_node("anvil:anvil", {
 		end
 
 		-- only punching with the hammer is supposed to work
-		if wielded:get_name() ~= 'anvil:hammer' then
+		if wielded:get_name() ~= "anvil:hammer" then
 			return
 		end
-		local input = inv:get_stack('input',1)
+		local input = inv:get_stack("input", 1)
 
 		-- only tools can be repaired
 		if not input or input:is_empty() then
@@ -341,45 +346,47 @@ minetest.register_node("anvil:anvil", {
 		end
 
 		-- 65535 is max damage
-		local damage_state = 40-math.floor(input:get_wear()/1638)
+		local damage_state = 40 - math.floor(input:get_wear() / 1638)
 
 		local tool_name = input:get_name()
 
 		local hud2 = nil
 		local hud3 = nil
-		if( input:get_wear()>0 ) then
+		if input:get_wear() > 0 then
 			hud2 = puncher:hud_add({
-			hud_elem_type = "statbar",
-			text = "default_cloud.png^[colorize:#ff0000:256",
-			number = 40,
-			direction = 0, -- left to right
-			position = {x=0.5, y=0.65},
-			alignment = {x = 0, y = 0},
-			offset = {x = -320, y = 0},
-			size = {x=32, y=32},
+				hud_elem_type = "statbar",
+				text = "default_cloud.png^[colorize:#ff0000:256",
+				number = 40,
+				direction = 0, -- left to right
+				position = {x = 0.5, y = 0.65},
+				alignment = {x = 0, y = 0},
+				offset = {x = -320, y = 0},
+				size = {x = 32, y = 32},
 			})
 			hud3 = puncher:hud_add({
-			hud_elem_type = "statbar",
-			text = "default_cloud.png^[colorize:#00ff00:256",
-			number = damage_state,
-			direction = 0, -- left to right
-			position = {x=0.5, y=0.65},
-			alignment = {x = 0, y = 0},
-			offset = {x = -320, y = 0},
-			size = {x=32, y=32},
+				hud_elem_type = "statbar",
+				text = "default_cloud.png^[colorize:#00ff00:256",
+				number = damage_state,
+				direction = 0, -- left to right
+				position = {x = 0.5, y = 0.65},
+				alignment = {x = 0, y = 0},
+				offset = {x = -320, y = 0},
+				size = {x = 32, y = 32},
 			})
 		end
 		minetest.after(2, function()
-		if( puncher ) and ( hud2 ) and ( hud3 ) then
-			puncher:hud_remove(hud2)
-			puncher:hud_remove(hud3)
+			if puncher and hud2 and hud3 then
+				puncher:hud_remove(hud2)
+				puncher:hud_remove(hud3)
 			end
 		end)
 
 		-- tell the player when the job is done
-		if(   input:get_wear() == 0 ) then
+		if input:get_wear() == 0 then
 			-- but only once
-			if 0 < meta:get_int("informed") then return end
+			if 0 < meta:get_int("informed") then
+				return
+			end
 			meta:set_int("informed", 1)
 			local tool_desc
 			local meta_description = input:get_meta():get_string("description")
@@ -390,37 +397,37 @@ minetest.register_node("anvil:anvil", {
 			else
 				tool_desc = tool_name
 			end
-			minetest.chat_send_player( puncher:get_player_name(), S('Your @1 has been repaired successfully.', tool_desc))
+			minetest.chat_send_player(puncher:get_player_name(), S("Your @1 has been repaired successfully.", tool_desc))
 			return
 		else
 			pos.y = pos.y + anvil.setting.item_displacement
-			minetest.sound_play({name="anvil_clang"}, {pos=pos})
+			minetest.sound_play({name = "anvil_clang"}, {pos = pos})
 			minetest.add_particlespawner({
-			amount = 10,
-			time = 0.1,
-			minpos = pos,
-			maxpos = pos,
-			minvel = {x=2, y=3, z=2},
-			maxvel = {x=-2, y=1, z=-2},
-			minacc = {x=0, y= -10, z=0},
-			maxacc = {x=0, y= -10, z=0},
-			minexptime = 0.5,
-			maxexptime = 1,
-			minsize = 1,
-			maxsize = 1,
-			collisiondetection = true,
-			vertical = false,
-			texture = "anvil_spark.png",
+				amount = 10,
+				time = 0.1,
+				minpos = pos,
+				maxpos = pos,
+				minvel = {x = 2, y = 3, z = 2},
+				maxvel = {x = -2, y = 1, z = -2},
+				minacc = {x = 0, y = -10, z = 0},
+				maxacc = {x = 0, y = -10, z = 0},
+				minexptime = 0.5,
+				maxexptime = 1,
+				minsize = 1,
+				maxsize = 1,
+				collisiondetection = true,
+				vertical = false,
+				texture = "anvil_spark.png",
 			})
 		end
 
 		-- do the actual repair
-		input:add_wear( -5000 ) -- equals to what technic toolshop does in 5 seconds
+		input:add_wear(-5000) -- equals to what technic toolshop does in 5 seconds
 		inv:set_stack("input", 1, input)
 
 		-- damage the hammer slightly
-		wielded:add_wear( 100 )
-		puncher:set_wielded_item( wielded )
+		wielded:add_wear(100)
+		puncher:set_wielded_item(wielded)
 	end,
 	is_ground_content = false,
 })
@@ -428,11 +435,13 @@ minetest.register_node("anvil:anvil", {
 -- automatically restore entities lost due to /clearobjects or similar
 minetest.register_lbm({
 	name = "anvil:anvil_item_restoration",
-	nodenames = { "anvil:anvil" },
+	nodenames = {"anvil:anvil"},
 	run_at_every_load = true,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		local test_pos = {x=pos.x, y=pos.y + anvil.setting.item_displacement, z=pos.z}
-		if #minetest.get_objects_inside_radius(test_pos, 0.5) > 0 then return end
+		local test_pos = {x = pos.x, y = pos.y + anvil.setting.item_displacement, z = pos.z}
+		if #minetest.get_objects_inside_radius(test_pos, 0.5) > 0 then
+			return
+		end
 		update_item(pos, node)
 	end
 })
@@ -444,7 +453,7 @@ minetest.register_lbm({
 	run_at_every_load = false,
 	action = function(pos, node)
 		local meta = minetest.get_meta(pos)
-		local inv  = meta:get_inventory()
+		local inv = meta:get_inventory()
 		if not inv:is_empty("hammer") then
 			local hammer = inv:get_stack("hammer", 1)
 			inv:set_stack("hammer", 1, nil)
@@ -452,7 +461,7 @@ minetest.register_lbm({
 			if inv:is_empty("input") then
 				inv:set_stack("input", 1, hammer) -- the abm will ensure there's an entity showing the hammer is here
 			else
-				minetest.add_item({x=pos.x, y=pos.y+1, z=pos.z}, hammer)
+				minetest.add_item({x = pos.x, y = pos.y + 1, z = pos.z}, hammer)
 			end
 		end
 	end
@@ -464,7 +473,7 @@ minetest.register_lbm({
 minetest.register_craft({
 	output = "anvil:anvil",
 	type = "shapeless",
-	recipe = { "anvil:anvil" }
+	recipe = {"anvil:anvil"}
 })
 
 local shared_anvil_craft_stack = ItemStack("anvil:anvil")
@@ -473,23 +482,23 @@ shared_anvil_craft_stack:get_meta():set_string("description", S("Shared anvil"))
 minetest.register_craft({
 	output = shared_anvil_craft_stack:to_string(),
 	type = "shapeless",
-	recipe = { "anvil:anvil", "default:paper" }
+	recipe = {"anvil:anvil", "default:paper"}
 })
 
 minetest.register_craft({
 	output = "anvil:anvil",
 	recipe = {
-		{"default:steel_ingot","default:steel_ingot","default:steel_ingot"},
-		{'',                   "default:steel_ingot",''                   },
-		{"default:steel_ingot","default:steel_ingot","default:steel_ingot"}
+		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+		{"", "default:steel_ingot", ""},
+		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"}
 	}
 })
 
 minetest.register_craft({
 	output = "anvil:hammer",
 	recipe = {
-		{"default:steel_ingot","default:steel_ingot","default:steel_ingot"},
-		{"default:steel_ingot","default:steel_ingot","default:steel_ingot"},
-		{"group:stick","",""}
+		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+		{"group:stick", "", ""}
 	}
 })
