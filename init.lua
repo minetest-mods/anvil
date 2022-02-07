@@ -157,6 +157,31 @@ else
 	metal_sounds = default.node_sound_stone_defaults()
 end
 
+local last_interact_by_puncher_name = {}
+local hud_ids_by_puncher_name = {}
+
+minetest.register_globalstep(function()
+	local now = minetest.get_us_time()
+
+	for puncher_name, last_interact in pairs(last_interact_by_puncher_name) do
+		if now - last_interact > 2000000 then  -- 2 seconds
+			local puncher = minetest.get_player_by_name(puncher_name)
+			if puncher and hud_ids_by_puncher_name[puncher_name] then
+				local hud2, hud3 = unpack(hud_ids_by_puncher_name[puncher_name])
+				if hud2 and puncher:hud_get(hud2) then
+					puncher:hud_remove(hud2)
+				end
+				if hud3 and puncher:hud_get(hud3) then
+					puncher:hud_remove(hud3)
+				end
+			end
+
+			last_interact_by_puncher_name[puncher_name] = nil
+			hud_ids_by_puncher_name[puncher_name] = nil
+		end
+	end
+end)
+
 minetest.register_node("anvil:anvil", {
 	drawtype = "nodebox",
 	description = S("Anvil"),
@@ -315,7 +340,8 @@ minetest.register_node("anvil:anvil", {
 		local inv = meta:get_inventory()
 		local owner = meta:get_string("owner")
 		local shared = meta:get_int("shared") == 1
-		if owner ~= puncher:get_player_name() and not shared then
+		local puncher_name = puncher:get_player_name()
+		if not shared and owner ~= puncher_name then
 			return
 		end
 
@@ -350,36 +376,38 @@ minetest.register_node("anvil:anvil", {
 
 		local tool_name = input:get_name()
 
-		local hud2 = nil
-		local hud3 = nil
 		if input:get_wear() > 0 then
-			hud2 = puncher:hud_add({
-				hud_elem_type = "statbar",
-				text = "default_cloud.png^[colorize:#ff0000:256",
-				number = 40,
-				direction = 0, -- left to right
-				position = {x = 0.5, y = 0.65},
-				alignment = {x = 0, y = 0},
-				offset = {x = -320, y = 0},
-				size = {x = 32, y = 32},
-			})
-			hud3 = puncher:hud_add({
-				hud_elem_type = "statbar",
-				text = "default_cloud.png^[colorize:#00ff00:256",
-				number = damage_state,
-				direction = 0, -- left to right
-				position = {x = 0.5, y = 0.65},
-				alignment = {x = 0, y = 0},
-				offset = {x = -320, y = 0},
-				size = {x = 32, y = 32},
-			})
-		end
-		minetest.after(2, function()
-			if puncher and hud2 and hud3 then
-				puncher:hud_remove(hud2)
-				puncher:hud_remove(hud3)
+			if hud_ids_by_puncher_name[puncher_name] then
+				local _, hud3 = unpack(hud_ids_by_puncher_name[puncher_name])
+
+				puncher:hud_change(hud3, "number", damage_state)
+			else
+				local hud2 = puncher:hud_add({
+					hud_elem_type = "statbar",
+					text = "default_cloud.png^[colorize:#ff0000:256",
+					number = 40,
+					direction = 0, -- left to right
+					position = {x = 0.5, y = 0.65},
+					alignment = {x = 0, y = 0},
+					offset = {x = -320, y = 0},
+					size = {x = 32, y = 32},
+				})
+				local hud3 = puncher:hud_add({
+					hud_elem_type = "statbar",
+					text = "default_cloud.png^[colorize:#00ff00:256",
+					number = damage_state,
+					direction = 0, -- left to right
+					position = {x = 0.5, y = 0.65},
+					alignment = {x = 0, y = 0},
+					offset = {x = -320, y = 0},
+					size = {x = 32, y = 32},
+				})
+
+				hud_ids_by_puncher_name[puncher_name] = {hud2, hud3}
 			end
-		end)
+
+			last_interact_by_puncher_name[puncher_name] = minetest.get_us_time()
+		end
 
 		-- tell the player when the job is done
 		if input:get_wear() == 0 then
@@ -397,7 +425,7 @@ minetest.register_node("anvil:anvil", {
 			else
 				tool_desc = tool_name
 			end
-			minetest.chat_send_player(puncher:get_player_name(), S("Your @1 has been repaired successfully.", tool_desc))
+			minetest.chat_send_player(puncher_name, S("Your @1 has been repaired successfully.", tool_desc))
 			return
 		else
 			pos.y = pos.y + anvil.setting.item_displacement
