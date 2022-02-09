@@ -14,6 +14,7 @@ anvil = {
 minetest.register_alias("castle:anvil", "anvil:anvil")
 
 local hammer_repairable = minetest.settings:get_bool("anvil_hammer_is_repairable", true)
+local hud_timeout = 2  -- seconds
 
 anvil.make_unrepairable = function(item_name)
 	local item_def = minetest.registered_items[item_name]
@@ -157,27 +158,28 @@ else
 	metal_sounds = default.node_sound_stone_defaults()
 end
 
-local last_interact_by_puncher_name = {}
-local hud_ids_by_puncher_name = {}
+local hud_info_by_puncher_name = {}
 
 minetest.register_globalstep(function()
-	local now = minetest.get_us_time()
+	local now = os.time()
 
-	for puncher_name, last_interact in pairs(last_interact_by_puncher_name) do
-		if now - last_interact > 2000000 then  -- 2 seconds
+	for puncher_name, hud_info in pairs(hud_info_by_puncher_name) do
+		local hud2, hud3, hud_expire_time = unpack(hud_info)
+		if now > hud_expire_time then
 			local puncher = minetest.get_player_by_name(puncher_name)
-			if puncher and hud_ids_by_puncher_name[puncher_name] then
-				local hud2, hud3 = unpack(hud_ids_by_puncher_name[puncher_name])
-				if hud2 and puncher:hud_get(hud2) then
+			if puncher then
+				local hud2_def = puncher:hud_get(hud2)
+				if hud2_def and hud2_def.name == "anvil_background" then
 					puncher:hud_remove(hud2)
 				end
-				if hud3 and puncher:hud_get(hud3) then
+
+				local hud3_def = puncher:hud_get(hud3)
+				if hud3_def and hud3_def.name == "anvil_foreground" then
 					puncher:hud_remove(hud3)
 				end
 			end
 
-			last_interact_by_puncher_name[puncher_name] = nil
-			hud_ids_by_puncher_name[puncher_name] = nil
+			hud_info_by_puncher_name[puncher_name] = nil
 		end
 	end
 end)
@@ -377,12 +379,19 @@ minetest.register_node("anvil:anvil", {
 		local tool_name = input:get_name()
 
 		if input:get_wear() > 0 then
-			if hud_ids_by_puncher_name[puncher_name] then
-				local _, hud3 = unpack(hud_ids_by_puncher_name[puncher_name])
+			local hud2, hud3, hud3_def
 
+			if hud_info_by_puncher_name[puncher_name] then
+				hud2, hud3, _ = unpack(hud_info_by_puncher_name[puncher_name])
+				hud3_def = puncher:hud_get(hud3)
+			end
+
+			if hud3_def and hud3_def.name == "anvil_foreground" then
 				puncher:hud_change(hud3, "number", damage_state)
+
 			else
-				local hud2 = puncher:hud_add({
+				hud2 = puncher:hud_add({
+					name = "anvil_background",
 					hud_elem_type = "statbar",
 					text = "default_cloud.png^[colorize:#ff0000:256",
 					number = 40,
@@ -392,7 +401,8 @@ minetest.register_node("anvil:anvil", {
 					offset = {x = -320, y = 0},
 					size = {x = 32, y = 32},
 				})
-				local hud3 = puncher:hud_add({
+				hud3 = puncher:hud_add({
+					name = "anvil_foreground",
 					hud_elem_type = "statbar",
 					text = "default_cloud.png^[colorize:#00ff00:256",
 					number = damage_state,
@@ -402,11 +412,9 @@ minetest.register_node("anvil:anvil", {
 					offset = {x = -320, y = 0},
 					size = {x = 32, y = 32},
 				})
-
-				hud_ids_by_puncher_name[puncher_name] = {hud2, hud3}
 			end
 
-			last_interact_by_puncher_name[puncher_name] = minetest.get_us_time()
+			hud_info_by_puncher_name[puncher_name] = {hud2, hud3, os.time() + hud_timeout}
 		end
 
 		-- tell the player when the job is done
