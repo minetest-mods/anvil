@@ -382,7 +382,7 @@ minetest.register_node("anvil:anvil", {
 			local hud2, hud3, hud3_def
 
 			if hud_info_by_puncher_name[puncher_name] then
-				hud2, hud3, _ = unpack(hud_info_by_puncher_name[puncher_name])
+				hud2, hud3 = unpack(hud_info_by_puncher_name[puncher_name])
 				hud3_def = puncher:hud_get(hud3)
 			end
 
