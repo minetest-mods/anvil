@@ -1,23 +1,12 @@
 # textdomain: anvil
-
-
-
-### init.lua ###
-
-@1 cannot be repaired with an anvil.=@1 kann nicht mit einem Amboss repariert werden.
-@1's anvil=@1 Amboss
-A tool for repairing other tools at a blacksmith's anvil.=Stahlhammer um Werkzeuge auf dem Amboss zu reparieren
-
-A tool for repairing other tools in conjunction with a blacksmith's hammer.=Ein Werkzeug zur Reparatur anderer Werkzeuge mit einem Schmiedehammer.
-
-Anvil=Amboss
-
-Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Klicken Sie mit einem beschädigten Werkzeug mit der rechten Maustaste auf diesen Amboss, um das beschädigte Werkzeug darauf zu platzieren. Sie können das beschädigte Werkzeug dann reparieren, indem Sie es mit einem Schmiedehammer schlagen. Wiederholte Schläge können erforderlich sein, um ein stark abgenutztes Werkzeug vollständig zu reparieren. Um das Werkzeug abzurufen, schlagen Sie entweder mit einer leeren Hand auf den Amboss oder klicken Sie mit der rechten Maustaste darauf.
-
-Shared anvil=Geteilter Amboss
 Steel blacksmithing hammer=Stahlschmiedehammer
-This anvil is for damaged tools only.=Dieser Amboss ist nur für beschädigte Werkzeuge geeignet.
-
+A tool for repairing other tools at a blacksmith's anvil.=Stahlhammer um Werkzeuge auf dem Amboss zu reparieren
 Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=Schlagen Sie mit diesem Hammer auf einen Amboss mit einem beschädigten Werkzeug und reparieren Sie ihn. Es kann auch zum Zertrümmern von Steinen verwendet werden, ist jedoch für diese Aufgabe nicht gut geeignet.
-
+Anvil=Amboss
+A tool for repairing other tools in conjunction with a blacksmith's hammer.=Ein Werkzeug zur Reparatur anderer Werkzeuge mit einem Schmiedehammer.
+Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Klicken Sie mit einem beschädigten Werkzeug mit der rechten Maustaste auf diesen Amboss, um das beschädigte Werkzeug darauf zu platzieren. Sie können das beschädigte Werkzeug dann reparieren, indem Sie es mit einem Schmiedehammer schlagen. Wiederholte Schläge können erforderlich sein, um ein stark abgenutztes Werkzeug vollständig zu reparieren. Um das Werkzeug abzurufen, schlagen Sie entweder mit einer leeren Hand auf den Amboss oder klicken Sie mit der rechten Maustaste darauf.
+Shared anvil=Geteilter Amboss
+@1's anvil=@1 Amboss
+This anvil is for damaged tools only.=Dieser Amboss ist nur für beschädigte Werkzeuge geeignet.
+@1 cannot be repaired with an anvil.=@1 kann nicht mit einem Amboss repariert werden.
 Your @1 has been repaired successfully.=Ihr @1 wurde erfolgreich repariert.

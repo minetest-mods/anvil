@@ -1,26 +1,12 @@
 # textdomain: anvil
-
-
-
-### init.lua ###
-
-#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-@1 cannot be repaired with an anvil.=@1 no se puede reparar con un yunque.
-#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-@1's anvil=Yunque de @1
-A tool for repairing other tools at a blacksmith's anvil.=Es una herramienta para reparar otras herramientas en el yunque del herrero
-
-A tool for repairing other tools in conjunction with a blacksmith's hammer.=Es una herramienta para reparar de herramientas dañadas en conjunto con el martillo del herrero.
-
-Anvil=Yunque
-
-Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Haga clic derecho sobre este yunque con una herramienta dañada Puede reparar la herramienta dañada golpeándola con el martillo del herrero Para reparar completamente una herramienta puede dar varios golpes Para sacar la herramienta, golpeela con la mano vacia o tambien con un clic derecho
-
-#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-Shared anvil=Yunque compartido
 Steel blacksmithing hammer=Martillo de acero para la herrería
-This anvil is for damaged tools only.=Este yunque es sólo para herramientas dañadas
-
+A tool for repairing other tools at a blacksmith's anvil.=Es una herramienta para reparar otras herramientas en el yunque del herrero
 Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=Use este martillo para dar golpes sobre el yunque donde puso la herramienta dañada Tambien puede ser usado para romper piedra pero no es muy adecuado para esa tarea.
-
+Anvil=Yunque
+A tool for repairing other tools in conjunction with a blacksmith's hammer.=Es una herramienta para reparar de herramientas dañadas en conjunto con el martillo del herrero.
+Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Haga clic derecho sobre este yunque con una herramienta dañada Puede reparar la herramienta dañada golpeándola con el martillo del herrero Para reparar completamente una herramienta puede dar varios golpes Para sacar la herramienta, golpeela con la mano vacia o tambien con un clic derecho
+Shared anvil=Yunque compartido
+@1's anvil=Yunque de @1
+This anvil is for damaged tools only.=Este yunque es sólo para herramientas dañadas
+@1 cannot be repaired with an anvil.=@1 no se puede reparar con un yunque.
 Your @1 has been repaired successfully.=Su @1 ha sido reparado correctamente.

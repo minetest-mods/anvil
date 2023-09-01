@@ -1,23 +1,12 @@
 # textdomain: anvil
-
-
-
-### init.lua ###
-
-@1 cannot be repaired with an anvil.=
-@1's anvil=
-A tool for repairing other tools at a blacksmith's anvil.=
-
-A tool for repairing other tools in conjunction with a blacksmith's hammer.=
-
-Anvil=
-
-Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=
-
-Shared anvil=
 Steel blacksmithing hammer=
-This anvil is for damaged tools only.=
-
+A tool for repairing other tools at a blacksmith's anvil.=
 Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=
-
+Anvil=
+A tool for repairing other tools in conjunction with a blacksmith's hammer.=
+Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=
+Shared anvil=
+@1's anvil=
+This anvil is for damaged tools only.=
+@1 cannot be repaired with an anvil.=
 Your @1 has been repaired successfully.=

@@ -1,26 +1,12 @@
 # textdomain: anvil
-
-
-
-### init.lua ###
-
-#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-@1 cannot be repaired with an anvil.=@1 non può essere riparato con un'incudine.
-#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-@1's anvil=L'incudine di @1
-A tool for repairing other tools at a blacksmith's anvil.=Un attrezzo per riparare altri attrezzi su di una incudine da fabbro.
-
-A tool for repairing other tools in conjunction with a blacksmith's hammer.=Un attrezzo per riparare altri attrezzi usando un martello da fabbro.
-
-Anvil=Incudine
-
-Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Fate click destro su questa incudine con un attrezzo danneggiato per metterlo sull'incudine. Poi potrete ripararlo colpendolo con un martello da fabbro. Potrebbero essere necessari più colpi per riparare un attrezzo gravemente danneggiato. Per riprendere l'attrezzo colpite o fate click destro sull'incudine a mani vuote.
-
-#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-Shared anvil=Incudine condivisa
 Steel blacksmithing hammer=Martello da fabbro di acciaio
-This anvil is for damaged tools only.=Questa incudine è solo per attrezzi danneggiati.
-
+A tool for repairing other tools at a blacksmith's anvil.=Un attrezzo per riparare altri attrezzi su di una incudine da fabbro.
 Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=Usate questo martello per colpire una incudine su cui è posto un attrezzo danneggiato e potrete ripararlo. Può anche essere usato per colpire la pietra, ma non è molto adatto a questo compito.
-
+Anvil=Incudine
+A tool for repairing other tools in conjunction with a blacksmith's hammer.=Un attrezzo per riparare altri attrezzi usando un martello da fabbro.
+Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Fate click destro su questa incudine con un attrezzo danneggiato per metterlo sull'incudine. Poi potrete ripararlo colpendolo con un martello da fabbro. Potrebbero essere necessari più colpi per riparare un attrezzo gravemente danneggiato. Per riprendere l'attrezzo colpite o fate click destro sull'incudine a mani vuote.
+Shared anvil=Incudine condivisa
+@1's anvil=L'incudine di @1
+This anvil is for damaged tools only.=Questa incudine è solo per attrezzi danneggiati.
+@1 cannot be repaired with an anvil.=@1 non può essere riparato con un'incudine.
 Your @1 has been repaired successfully.=La/il vostr* @1 è stat* riparat* con successo.

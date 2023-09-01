@@ -1,24 +1,12 @@
 # textdomain: anvil
-
-
-
-### init.lua ###
-
-@1 cannot be repaired with an anvil.=@1 ne peut pas être réparé avec une enclume.
-@1's anvil=enclume de @1
-A tool for repairing other tools at a blacksmith's anvil.=Un outil pour réparer les autres outils avec une enclume de forgeron.
-
-A tool for repairing other tools in conjunction with a blacksmith's hammer.=Un outil pour réparer les autres outils à utiliser avec un marteau de forgeron.
-
-Anvil=Enclume
-
-Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Cliquez-droit sur cette enclume avec un outil endommagé pour le placer dessus. Vous pourrez alors réparer l'outil endommagé en le frappant avec un marteau de forgeron. Des coups successifs seront nécessaires pour réparer l'outil entièrement. Pour récupérer l'outil, frappez dessus ou faites un click-droit en ayant la main vide.
-
-#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-Shared anvil=Enclume partagée
 Steel blacksmithing hammer=Marteau de forgeron en acier
-This anvil is for damaged tools only.=L'enclume s'utilise sur les outils endommagés.
-
+A tool for repairing other tools at a blacksmith's anvil.=Un outil pour réparer les autres outils avec une enclume de forgeron.
 Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=Utilisez ce marteau pour frapper une enclume contenant un outil endommagé, ainsi vous pourrez le réparer. Il peut être aussi utilisé pour casser de la pierre, mais il n'est pas adapté à cette tâche.
-
+Anvil=Enclume
+A tool for repairing other tools in conjunction with a blacksmith's hammer.=Un outil pour réparer les autres outils à utiliser avec un marteau de forgeron.
+Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Cliquez-droit sur cette enclume avec un outil endommagé pour le placer dessus. Vous pourrez alors réparer l'outil endommagé en le frappant avec un marteau de forgeron. Des coups successifs seront nécessaires pour réparer l'outil entièrement. Pour récupérer l'outil, frappez dessus ou faites un click-droit en ayant la main vide.
+Shared anvil=Enclume partagée
+@1's anvil=enclume de @1
+This anvil is for damaged tools only.=L'enclume s'utilise sur les outils endommagés.
+@1 cannot be repaired with an anvil.=@1 ne peut pas être réparé avec une enclume.
 Your @1 has been repaired successfully.=Votre @1 a été réparé avec succès.
