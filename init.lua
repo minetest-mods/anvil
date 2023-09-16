@@ -258,6 +258,10 @@ minetest.register_node("anvil:anvil", {
 		end
 
 		local player_name = player:get_player_name()
+		local owner = meta:get_string("owner")
+		if owner ~= player_name then
+			return 0
+		end
 		if stack:get_wear() == 0 then
 			minetest.chat_send_player(player_name, S("This anvil is for damaged tools only."))
 			return 0
@@ -277,6 +281,12 @@ minetest.register_node("anvil:anvil", {
 	end,
 
 	allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+		local meta = minetest.get_meta(pos)
+		local player_name = player:get_player_name()
+		local owner = meta:get_string("owner")
+		if owner ~= player_name then
+			return 0
+		end
 		if listname ~= "input" then
 			return 0
 		end
