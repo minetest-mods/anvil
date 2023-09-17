@@ -142,6 +142,19 @@ local update_item = function(pos, node)
 	end
 end
 
+
+local function has_access(pos, player)
+	local name = player:get_player_name()
+	local meta = minetest.get_meta(pos)
+	local owner = meta:get_string("owner")
+	local shared = meta:get_int("shared") == 1
+	if shared or name == owner then
+		return true
+	else
+		return false
+	end
+end
+
 local hud_info_by_puncher_name = {}
 
 minetest.register_globalstep(function()
@@ -244,6 +257,10 @@ minetest.register_node("anvil:anvil", {
 			return 0
 		end
 
+		if not has_access(pos, player) then
+			return 0
+		end
+
 		local player_name = player:get_player_name()
 		if stack:get_wear() == 0 then
 			minetest.chat_send_player(player_name, S("This anvil is for damaged tools only."))
@@ -264,6 +281,10 @@ minetest.register_node("anvil:anvil", {
 	end,
 
 	allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+		if not has_access(pos, player) then
+			return 0
+		end
+
 		if listname ~= "input" then
 			return 0
 		end
