@@ -19,11 +19,8 @@ local hud_timeout = 2  -- seconds
 anvil.make_unrepairable = function(item_name)
 	local item_def = minetest.registered_items[item_name]
 	if item_def then
-		-- Drop table reference. Copy other values over.
-		local groups = {not_repaired_by_anvil = 1}
-		for k, v in pairs(item_def.groups) do
-			groups[k] = v
-		end
+		local groups = table.copy(item_def.groups)
+		groups.not_repaired_by_anvil = 1
 		minetest.override_item(item_name, {groups = groups})
 	end
 end
@@ -62,7 +59,8 @@ local S = minetest.get_translator(minetest.get_current_modname())
 local hammer_def = {
 	description = S("Steel blacksmithing hammer"),
 	_doc_items_longdesc = S("A tool for repairing other tools at a blacksmith's anvil."),
-	_doc_items_usagehelp = S("Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task."),
+	_doc_items_usagehelp = S("Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. "
+		.. "It can also be used for smashing stone, but it is not well suited to this task."),
 	image = "anvil_tool_steelhammer.png",
 	inventory_image = "anvil_tool_steelhammer.png",
 
@@ -120,7 +118,8 @@ minetest.register_entity("anvil:item", {
 })
 
 local remove_item = function(pos, node)
-	local objs = minetest.get_objects_inside_radius({x = pos.x, y = pos.y + anvil.setting.item_displacement, z = pos.z}, .5)
+	local npos = vector.new(pos.x, pos.y + anvil.setting.item_displacement, pos.z)
+	local objs = minetest.get_objects_inside_radius(npos, .5)
 	if objs then
 		for _, obj in ipairs(objs) do
 			if obj and obj:get_luaentity() and obj:get_luaentity().name == "anvil:item" then
@@ -139,16 +138,10 @@ local update_item = function(pos, node)
 		tmp.texture = inv:get_stack("input", 1):get_name()
 		local e = minetest.add_entity(pos, "anvil:item")
 		local yaw = math.pi * 2 - node.param2 * math.pi / 2
-		if e.set_rotation == nil then
-			-- This is for 0.4.16 support, remove it eventually
-			e:set_yaw(yaw)
-			pos.y = pos.y + 5 / 16
-			e:set_pos(pos)
-		else
-			e:set_rotation({x = -1.5708, y = yaw, z = 0}) -- x is pitch, 1.5708 is 90 degrees.
-		end
+		e:set_rotation({x = -1.5708, y = yaw, z = 0}) -- x is pitch, 1.5708 is 90 degrees.
 	end
 end
+
 
 local function has_access(pos, player)
 	local name = player:get_player_name()
@@ -160,14 +153,6 @@ local function has_access(pos, player)
 	else
 		return false
 	end
-end
-
-local metal_sounds
--- Apparently node_sound_metal_defaults is a newer thing, I ran into games using an older version of the default mod without it.
-if default.node_sound_metal_defaults ~= nil then
-	metal_sounds = default.node_sound_metal_defaults()
-else
-	metal_sounds = default.node_sound_stone_defaults()
 end
 
 local hud_info_by_puncher_name = {}
@@ -200,12 +185,15 @@ minetest.register_node("anvil:anvil", {
 	drawtype = "nodebox",
 	description = S("Anvil"),
 	_doc_items_longdesc = S("A tool for repairing other tools in conjunction with a blacksmith's hammer."),
-	_doc_items_usagehelp = S("Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand."),
+	_doc_items_usagehelp = S("Right-click on this anvil with a damaged tool to place the damaged tool upon it. " ..
+		"You can then repair the damaged tool by striking it with a blacksmith's hammer. " ..
+		"Repeated blows may be necessary to fully repair a badly worn tool. " ..
+		"To retrieve the tool either punch or right-click the anvil with an empty hand."),
 	tiles = {"default_stone.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 2},
-	sounds = metal_sounds,
+	sounds = default.node_sound_metal_defaults(),
 	-- the nodebox model comes from realtest
 	node_box = {
 		type = "fixed",
@@ -334,7 +322,6 @@ minetest.register_node("anvil:anvil", {
 		local this_def = minetest.registered_nodes[node.name]
 		if this_def.allow_metadata_inventory_put(pos, "input", 1, itemstack:peek_item(), clicker) > 0 then
 			local s = itemstack:take_item()
-			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
 			inv:add_item("input", s)
 			local meta_description = s:get_meta():get_string("description")

@@ -1,4 +1,0 @@
-default
-doc?
-intllib?
-technic?

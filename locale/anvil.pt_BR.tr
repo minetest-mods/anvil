@@ -1,23 +1,12 @@
 # textdomain: anvil
-
-
-
-### init.lua ###
-
-@1 cannot be repaired with an anvil.=@1 não pode ser reparado com uma bigorna.
-@1's anvil=bigorna de @1
-A tool for repairing other tools at a blacksmith's anvil.=Uma ferramenta para consertar outras ferramentas na bigorna de um ferreiro.
-
-A tool for repairing other tools in conjunction with a blacksmith's hammer.=Uma ferramenta para reparar outras ferramentas em conjunto com um martelo de ferreiro.
-
-Anvil=Bigorna
-
-Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Clique com o botão direito nesta bigorna com uma ferramenta danificada para colocar a ferramenta danificada sobre ela. Você pode consertar a ferramenta danificada batendo nela com um martelo de ferreiro. Golpes repetidos podem ser necessários para reparar completamente uma ferramenta muito gasta. Para recuperar a ferramenta, perfure ou clique com o botão direito do mouse na bigorna com a mão vazia.
-
-Shared anvil=bigorna compartilhada
 Steel blacksmithing hammer=Martelo de ferreiro de aço
-This anvil is for damaged tools only.=Esta bigorna é apenas para ferramentas danificadas.
-
+A tool for repairing other tools at a blacksmith's anvil.=Uma ferramenta para consertar outras ferramentas na bigorna de um ferreiro.
 Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=Use este martelo para golpear uma bigorna com uma ferramenta danificada e você poderá consertá-la. Também pode ser usado para quebrar pedras, mas não é adequado para essa tarefa.
-
+Anvil=Bigorna
+A tool for repairing other tools in conjunction with a blacksmith's hammer.=Uma ferramenta para reparar outras ferramentas em conjunto com um martelo de ferreiro.
+Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Clique com o botão direito nesta bigorna com uma ferramenta danificada para colocar a ferramenta danificada sobre ela. Você pode consertar a ferramenta danificada batendo nela com um martelo de ferreiro. Golpes repetidos podem ser necessários para reparar completamente uma ferramenta muito gasta. Para recuperar a ferramenta, perfure ou clique com o botão direito do mouse na bigorna com a mão vazia.
+Shared anvil=bigorna compartilhada
+@1's anvil=bigorna de @1
+This anvil is for damaged tools only.=Esta bigorna é apenas para ferramentas danificadas.
+@1 cannot be repaired with an anvil.=@1 não pode ser reparado com uma bigorna.
 Your @1 has been repaired successfully.=Seu @1 foi reparado com sucesso.
