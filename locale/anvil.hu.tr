@@ -1,0 +1,12 @@
+# textdomain: anvil
+Steel blacksmithing hammer=Kovácspöröly
+A tool for repairing other tools at a blacksmith's anvil.=Ezzel javíthatod a szerszámaidat az üllőn.
+Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=Üss ezzel a pöröllyel egy olyan üllőre, amelyre előzőleg odatettél egy sérült szerszámot, és így megjavíthatod. Használhatod kövek összezúzására is, de ebben nem túl hatékony.
+Anvil=Üllő
+A tool for repairing other tools in conjunction with a blacksmith's hammer.=Ezen javíthatod a szerszámaidat a kovácspöröllyel.
+Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Válassz ki egy sérült szerszámot és jobb-klikkelj az üllőre: így rakhatod rá az előbbit az utóbbira. Ezután válaszd ki a kovácspörölyt és üss rá vele. Minden ütéssel javítasz a sérült szerszámon, amíg teljesen meg nem javítod. Az üllőre helyezett szerszámot úgy veheted fel újra, ha vagy üres kézzel ütsz az üllőre, vagy jobb-klikkelsz rá.
+Shared anvil=Megosztott üllő
+@1's anvil=@1 üllője
+This anvil is for damaged tools only.=Az üllő csak sérült szerszámokkal használható.
+@1 cannot be repaired with an anvil.=@1 nem javítható üllőn.
+Your @1 has been repaired successfully.=@1 sikeresen megjavítva.
