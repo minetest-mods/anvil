@@ -115,6 +115,9 @@ minetest.register_entity("anvil:item", {
 		end
 		return ""
 	end,
+	on_blast = function()
+		return false, false, {}
+	end,
 })
 
 local remove_item = function(pos, node)
@@ -473,6 +476,20 @@ minetest.register_node("anvil:anvil", {
 		puncher:set_wielded_item(wielded)
 	end,
 	is_ground_content = false,
+
+	on_blast = function(pos, intensity)
+		local drops = {"anvil:anvil"}
+		local meta = minetest.get_meta(pos)
+		local inv = meta:get_inventory()
+		local input = inv:get_stack("input", 1)
+		if not input:is_empty() then
+			drops[2] = input:to_string()
+		end
+		remove_item(pos)
+		minetest.remove_node(pos)
+
+		return drops
+	end,
 })
 
 -- automatically restore entities lost due to /clearobjects or similar
