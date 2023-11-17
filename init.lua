@@ -480,6 +480,12 @@ minetest.register_node("anvil:anvil", {
 	on_blast = function(pos, intensity)
 		local drops = {"anvil:anvil"}
 		local meta = minetest.get_meta(pos)
+		if meta:get_int("shared") == 1 then
+			drops[1] = ItemStack({
+				name = "anvil:anvil",
+				meta = {shared = 1, description = S("Shared anvil")}
+			})
+		end
 		local inv = meta:get_inventory()
 		local input = inv:get_stack("input", 1)
 		if not input:is_empty() then
