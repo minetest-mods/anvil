@@ -54,6 +54,14 @@ end
 
 local S = minetest.get_translator(minetest.get_current_modname())
 
+local shared_anvil_item = ItemStack({
+	name = "anvil:anvil",
+	meta = {
+		shared = 1,
+		description = S("Shared anvil")
+	}
+})
+
 -- the hammer for the anvil
 
 local hammer_def = {
@@ -236,10 +244,8 @@ minetest.register_node("anvil:anvil", {
 	end,
 
 	preserve_metadata = function(pos, oldnode, oldmeta, drops)
-		if next(drops) and tonumber(oldmeta.shared) == 1 then
-			local meta = drops[next(drops)]:get_meta()
-			meta:set_int("shared", 1)
-			meta:set_string("description", S("Shared anvil"))
+		if drops[1] and tonumber(oldmeta.shared) == 1 then
+			drops[1] = ItemStack(shared_anvil_item)
 		end
 		return drops
 	end,
@@ -478,8 +484,13 @@ minetest.register_node("anvil:anvil", {
 	is_ground_content = false,
 
 	on_blast = function(pos, intensity)
-		local drops = {"anvil:anvil"}
+		local drops = {}
 		local meta = minetest.get_meta(pos)
+		if meta:get_int("shared") == 1 then
+			drops[1] = ItemStack(shared_anvil_item)
+		else
+			drops[1] = ItemStack("anvil:anvil")
+		end
 		local inv = meta:get_inventory()
 		local input = inv:get_stack("input", 1)
 		if not input:is_empty() then
@@ -536,11 +547,8 @@ minetest.register_craft({
 	recipe = {"anvil:anvil"}
 })
 
-local shared_anvil_craft_stack = ItemStack("anvil:anvil")
-shared_anvil_craft_stack:get_meta():set_int("shared", 1)
-shared_anvil_craft_stack:get_meta():set_string("description", S("Shared anvil"))
 minetest.register_craft({
-	output = shared_anvil_craft_stack:to_string(),
+	output = shared_anvil_item:to_string(),
 	type = "shapeless",
 	recipe = {"anvil:anvil", "default:paper"}
 })
