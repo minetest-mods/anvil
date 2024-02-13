@@ -1,0 +1,12 @@
+# textdomain: anvil
+Steel blacksmithing hammer=Стальной кузнечный молот
+A tool for repairing other tools at a blacksmith's anvil.=Инструмент для починки других инструментов на наковальне.
+Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=Ударьте этим молотом по наковальне что бы починить поврежденный инструмент. Этот молот может быть использован для того что бы разбивать камень, но он для этого плохо подходит.
+Anvil=Наковальня
+A tool for repairing other tools in conjunction with a blacksmith's hammer.=Инструмент позволяющий чинить другие инструменты на наковальне
+Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Нажмите правой кнопкой мыши по наковальне держа в руке поврежденный инструмент что бы положить поврежденный инструмент на наковальню. После этого вы сможете починить поврежденный инструмент нанося удары молотом по нему. Повторяющиеся удары могут быть необходимы для полной починки сильно изношенного инструмента. Что бы забрать инструмент кликните правой кнопкой мыши по наковальне.
+Shared anvil=Общая наковальня
+@1's anvil=Наковальня принадлежащая @1
+This anvil is for damaged tools only.=Эта наковальня только для сломанных инструментов
+@1 cannot be repaired with an anvil.=@1 не может быть починен на наковальне
+Your @1 has been repaired successfully.=Ваш @1 был починен успешно
