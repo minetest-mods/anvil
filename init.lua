@@ -242,7 +242,7 @@ local function anvil_rightclick(pos, node, clicker, itemstack)
 end
 
 local function anvil_rotate(pos, node, user, mode, new_param2)
-	if mode == screwdriver.ROTATE_FACE then
+	if minetest.get_modpath("screwdriver") ~= nil and mode == screwdriver.ROTATE_FACE then
 		return
 	end
 
