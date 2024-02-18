@@ -192,6 +192,93 @@ minetest.register_globalstep(function()
 	end
 end)
 
+local function anvil_rightclick(pos, node, clicker, itemstack)
+	if not clicker or not itemstack then
+		return
+	end
+	local meta = minetest.get_meta(pos)
+	local name = clicker:get_player_name()
+	local owner = meta:get_string("owner")
+	local shared = meta:get_int("shared") == 1
+
+	if name ~= owner and not shared then
+		return itemstack
+	end
+
+	if itemstack:get_count() == 0 then
+		local inv = meta:get_inventory()
+		if not inv:is_empty("input") then
+			local return_stack = inv:get_stack("input", 1)
+			inv:set_stack("input", 1, nil)
+			local wield_index = clicker:get_wield_index()
+			clicker:get_inventory():set_stack("main", wield_index, return_stack)
+			if shared then
+				meta:set_string("infotext", S("Shared anvil"))
+			else
+				meta:set_string("infotext", S("@1's anvil", owner))
+			end
+			remove_item(pos, node)
+			return return_stack
+		end
+	end
+
+	local this_def = minetest.registered_nodes[node.name]
+	if this_def.allow_metadata_inventory_put(pos, "input", 1, itemstack:peek_item(), clicker) > 0 then
+		local s = itemstack:take_item()
+		local inv = meta:get_inventory()
+		inv:add_item("input", s)
+		local meta_description = s:get_meta():get_string("description")
+		if "" ~= meta_description then
+			if shared then
+				meta:set_string("infotext", S("Shared anvil"))
+			else
+				meta:set_string("infotext", S("@1's anvil", owner) .. "\n" .. meta_description)
+			end
+		end
+		meta:set_int("informed", 0)
+		update_item(pos, node)
+	end
+	return itemstack
+end
+
+local function anvil_rotate(pos, node, user, mode, new_param2)
+	if mode == screwdriver.ROTATE_FACE then
+		return
+	end
+
+	if not minetest.is_player(user) then
+		return
+	end
+
+	local player_name = user:get_player_name()
+	local wield_list = user:get_wield_list()
+	local wield_index = user:get_wield_index()
+
+	minetest.after(0,function()
+		local player = minetest.get_player_by_name(player_name)
+		if not player then
+			return
+		end
+
+		local inv = player:get_inventory()
+		local wielded = inv:get_stack(wield_list, wield_index)
+
+		if wielded:get_name() ~= "screwdriver:screwdriver" then
+			return
+		end
+
+		local node_now = minetest.get_node(pos)
+		if node_now.name ~= "anvil:anvil" then
+			return
+		end
+
+		local tool_after_rightclicking = anvil_rightclick(pos, node_now, player, wielded)
+		inv:set_stack(wield_list, wield_index, tool_after_rightclicking)
+	end)
+
+	return false
+end
+
 minetest.register_node("anvil:anvil", {
 	drawtype = "nodebox",
 	description = S("Anvil"),
@@ -300,53 +387,8 @@ minetest.register_node("anvil:anvil", {
 		return stack:get_count()
 	end,
 
-	on_rightclick = function(pos, node, clicker, itemstack)
-		if not clicker or not itemstack then
-			return
-		end
-		local meta = minetest.get_meta(pos)
-		local name = clicker:get_player_name()
-		local owner = meta:get_string("owner")
-		local shared = meta:get_int("shared") == 1
-
-		if name ~= owner and not shared then
-			return itemstack
-		end
-		if itemstack:get_count() == 0 then
-			local inv = meta:get_inventory()
-			if not inv:is_empty("input") then
-				local return_stack = inv:get_stack("input", 1)
-				inv:set_stack("input", 1, nil)
-				local wield_index = clicker:get_wield_index()
-				clicker:get_inventory():set_stack("main", wield_index, return_stack)
-				if shared then
-					meta:set_string("infotext", S("Shared anvil"))
-				else
-					meta:set_string("infotext", S("@1's anvil", owner))
-				end
-				remove_item(pos, node)
-				return return_stack
-			end
-		end
-		local this_def = minetest.registered_nodes[node.name]
-		if this_def.allow_metadata_inventory_put(pos, "input", 1, itemstack:peek_item(), clicker) > 0 then
-			local s = itemstack:take_item()
-			local inv = meta:get_inventory()
-			inv:add_item("input", s)
-			local meta_description = s:get_meta():get_string("description")
-			if "" ~= meta_description then
-				if shared then
-					meta:set_string("infotext", S("Shared anvil"))
-				else
-					meta:set_string("infotext", S("@1's anvil", owner) .. "\n" .. meta_description)
-				end
-			end
-			meta:set_int("informed", 0)
-			update_item(pos, node)
-		end
-
-		return itemstack
-	end,
+	on_rotate = anvil_rotate,
+	on_rightclick = anvil_rightclick,
 
 	on_punch = function(pos, node, puncher)
 		if not pos or not node or not puncher then
