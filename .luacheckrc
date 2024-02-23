@@ -9,5 +9,6 @@ read_globals = {
 }
 
 globals = {
-	"anvil"
+	"anvil",
+	"screwdriver"
 }
