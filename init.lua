@@ -263,10 +263,6 @@ local function anvil_rotate(pos, node, user, mode, new_param2)
 		local inv = player:get_inventory()
 		local wielded = inv:get_stack(wield_list, wield_index)
 
-		if wielded:get_name() ~= "screwdriver:screwdriver" then
-			return
-		end
-
 		local node_now = minetest.get_node(pos)
 		if node_now.name ~= "anvil:anvil" then
 			return
