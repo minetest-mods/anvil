@@ -253,6 +253,7 @@ local function anvil_rotate(pos, node, user, mode, new_param2)
 	local player_name = user:get_player_name()
 	local wield_list = user:get_wield_list()
 	local wield_index = user:get_wield_index()
+	local wielded_original = user:get_inventory():get_stack(wield_list, wield_index)
 
 	minetest.after(0,function()
 		local player = minetest.get_player_by_name(player_name)
@@ -263,7 +264,7 @@ local function anvil_rotate(pos, node, user, mode, new_param2)
 		local inv = player:get_inventory()
 		local wielded = inv:get_stack(wield_list, wield_index)
 
-		if wielded:get_name() ~= "screwdriver:screwdriver" then
+		if wielded:get_name() ~= wielded_original:get_name() then
 			return
 		end
 
