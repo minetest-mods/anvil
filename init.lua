@@ -92,12 +92,14 @@ minetest.register_tool("anvil:hammer", hammer_def)
 local tmp = {}
 
 minetest.register_entity("anvil:item", {
-	hp_max = 1,
-	visual = "wielditem",
-	visual_size = {x = .33, y = .33},
-	collisionbox = {0, 0, 0, 0, 0, 0},
-	physical = false,
-	textures = {"air"},
+	initial_properties = {
+		hp_max = 1,
+		visual = "wielditem",
+		visual_size = {x = .33, y = .33},
+		collisionbox = {0, 0, 0, 0, 0, 0},
+		physical = false,
+		textures = {"air"},
+	},
 	on_activate = function(self, staticdata)
 		if tmp.nodename ~= nil and tmp.texture ~= nil then
 			self.nodename = tmp.nodename
@@ -451,7 +453,7 @@ minetest.register_node("anvil:anvil", {
 			else
 				hud2 = puncher:hud_add({
 					name = "anvil_background",
-					hud_elem_type = "statbar",
+					[minetest.features.hud_def_type_field and "type" or "hud_elem_type"] = "statbar",
 					text = "default_cloud.png^[colorize:#ff0000:256",
 					number = 40,
 					direction = 0, -- left to right
@@ -462,7 +464,7 @@ minetest.register_node("anvil:anvil", {
 				})
 				hud3 = puncher:hud_add({
 					name = "anvil_foreground",
-					hud_elem_type = "statbar",
+					[minetest.features.hud_def_type_field and "type" or "hud_elem_type"] = "statbar",
 					text = "default_cloud.png^[colorize:#00ff00:256",
 					number = damage_state,
 					direction = 0, -- left to right
