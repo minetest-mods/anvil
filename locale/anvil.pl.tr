@@ -1,0 +1,12 @@
+# textdomain: anvil
+Steel blacksmithing hammer=Stalowy młot kowalski
+A tool for repairing other tools at a blacksmith's anvil=Narzędzie do naprawy innych narzędzi przy kowadle
+Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task=Użyj tego młota, aby uderzać w kowadło z uszkodzonym narzędziem, a możesz je naprawić. Może być również używany do łamania kamienia, ale nie jest przystosowany do tego zadania
+Anvil=Kowadło
+A tool for repairing other tools in conjunction with a blacksmith's hammer=Narzędzie do naprawy innych narzędzi w połączeniu z młotem kowalskim
+Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand=Kliknij prawym przyciskiem myszy na to kowadło z uszkodzonym narzędziem, aby umieścić uszkodzone narzędzie na nim. Następnie możesz naprawić uszkodzone narzędzie, uderzając je młotem kowalskim. Powtarzające się uderzenia mogą być konieczne, aby w pełni naprawić mocno zużyte narzędzie. Aby odzyskać narzędzie, uderz w kowadło lub kliknij prawym przyciskiem myszy na kowadło pustą ręką
+Shared anvil=Wspólne kowadło
+@1's anvil=Kowadło @1
+This anvil is for damaged tools only=To kowadło jest przeznaczone tylko dla uszkodzonych narzędzi
+@1 cannot be repaired with an anvil=@1 nie może być naprawione przy użyciu kowadła
+Your @1 has been repaired successfully=Twoje @1 zostało pomyślnie naprawione
