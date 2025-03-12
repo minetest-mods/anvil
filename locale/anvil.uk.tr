@@ -1,0 +1,13 @@
+# textdomain: anvil
+Steel blacksmithing hammer=Сталевий ковальський молот
+A tool for repairing other tools at a blacksmith's anvil.=Інструмент для ремонту інших інструментів на ковадлі коваля.
+Use this hammer to strike blows upon an anvil bearing a damaged tool and you can repair it. It can also be used for smashing stone, but it is not well suited to this task.=Використовуйте цей молот для ударів по ковадлу з пошкодженим інструментом, і ви зможете його відремонтувати. Він також може бути використаний для розбиття каменю, але для цього завдання не дуже підходить.
+Anvil=Ковадло
+Hammer and anvil for repairing tools.=Молот та ковадло для ремонту інструментів.
+A tool for repairing other tools in conjunction with a blacksmith's hammer.=Інструмент для ремонту інших інструментів разом з ковальським молотом.
+Right-click on this anvil with a damaged tool to place the damaged tool upon it. You can then repair the damaged tool by striking it with a blacksmith's hammer. Repeated blows may be necessary to fully repair a badly worn tool. To retrieve the tool either punch or right-click the anvil with an empty hand.=Клацніть правою кнопкою миші на це ковадло з пошкодженим інструментом, щоб покласти інструмент на нього. Потім ви зможете відремонтувати його, ударяючи молотом. Для повного ремонту сильно зношеного інструмента можуть знадобитися кілька ударів. Щоб забрати інструмент, або вдарте по ковадлу, або клацніть правою кнопкою миші з порожньою рукою.
+Shared anvil=Спільне ковадло
+@1's anvil=Ковадло @1
+This anvil is for damaged tools only.=Це ковадло призначене лише для пошкоджених інструментів.
+@1 cannot be repaired with an anvil.=Інструмент @1 не можна відремонтувати на ковадлі.
+Your @1 has been repaired successfully.=Інструмент "@1" успішно відремонтовано.
